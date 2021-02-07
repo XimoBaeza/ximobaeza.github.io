@@ -36,3 +36,6 @@ VIendo la página principal veo que hay una dirección de email info@doctors.htb
 
 ![](/assets/images/Doctor-Hackthebox/doctor-login.png)
 
+Me registro en la página y veo que se pueden postear mensajes, y además en el código fuente de la página el desarrollador ha dejado un comentario que dice que la página archive está en fase beta.
+
+![](/assets/images/Doctor-Hackthebox/doctor-beta.png)
