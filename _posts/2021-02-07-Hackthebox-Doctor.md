@@ -28,6 +28,11 @@ Empezamos haciendo un escaneo de puertos con nmap. Vemos que están abiertos los
 
 ![](/assets/images/Doctor-Hackthebox/nmap-doctor.png)
 
+Accedo a la página web a través de la ip.
 
+![](/assets/images/Doctor-Hackthebox/doctor-home.png)
 
+VIendo la página principal veo que hay una dirección de email info@doctors.htb, así que añado doctors.htb a mi fichero hosts para que resuelva el dominio y obtengo un panel login.
+
+![](/assets/images/Doctor-Hackthebox/doctor-login.png)
 
