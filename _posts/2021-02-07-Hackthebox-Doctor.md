@@ -49,7 +49,7 @@ Busco información acerca de como explotar flask y encuentro lo siguiente:
 [https://www.onsecurity.co.uk/blog/server-side-template-injection-with-jinja2/](https://www.onsecurity.co.uk/blog/server-side-template-injection-with-jinja2/)<br>
 
 Parece ser que se puede explotar una vulnerabilidad llamada `Server Side Template Injection`.
-Éstos links ayudan a entender la vulnerabilidad, y en el último link veo que se pueden ekecutar comandos con ésta inyección:
+Éstos links ayudan a entender la vulnerabilidad, y en el último link veo que se pueden ejecutar comandos con ésta inyección:
 
 `{{request.application.__globals__.__builtins__.__import__('os').popen('id').read()}}`
 
