@@ -99,8 +99,6 @@ Viendo la página del proyecto observo que por defecto se ejecuta un calc.exe co
 
 ![](/assets/images/Doctor-Hackthebox/doctor-monkey.png)
 
-Viendo la página del proyecto observo que por defecto se ejecuta un calc.exe como payload.
-
 Éste es el código:
 
 ```python
