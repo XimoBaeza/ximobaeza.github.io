@@ -21,6 +21,8 @@ tags:
 <img src="/assets/images/Doctor-Hackthebox/doctor-hackthebox.png">
 </p>
 
+Una máquina muy interesante, en la cual nos aprovechamos de una vulnerabilidad llamada Server Side Template Injection para la intrusión inicial, y de una mala configuración en splunk para la escalada de privilegios.
+
 ## Escaneo de puertos
 
 Empezamos haciendo un escaneo de puertos con nmap. Vemos que están abiertos los puertos 22, 80 y 8089 que corresponden a los servicios SSH, Apache y Splunkd respectívamente.
