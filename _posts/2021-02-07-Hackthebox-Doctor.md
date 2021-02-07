@@ -5,7 +5,7 @@ excerpt: "Una máquina muy interesante, en la cual nos aprovechamos de una vulne
 date: 2021-02-07
 classes: wide
 header:
-  teaser: /assets/images/Doctor-Hackthebox/Doctor-Hackthebox.png
+  teaser: /assets/images/Doctor-Hackthebox/doctor-hackthebox.png
   teaser_home_page: true
 categories:
   - HackTheBox
