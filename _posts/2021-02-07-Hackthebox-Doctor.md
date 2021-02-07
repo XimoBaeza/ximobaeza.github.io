@@ -25,8 +25,6 @@ tags:
 
 Empezamos haciendo un escaneo de puertos con nmap. Vemos que están abiertos los puertos 22, 80 y 8089 que corresponden a los servicios SSH, Apache y Splunkd respectívamente.
 
----
-
 ![](/assets/images/Doctor-Hackthebox/nmap-doctor.png)
 
 
