@@ -39,3 +39,11 @@ VIendo la página principal veo que hay una dirección de email info@doctors.htb
 Me registro en la página y veo que se pueden postear mensajes, y además en el código fuente de la página el desarrollador ha dejado un comentario que dice que la página archive está en fase beta.
 
 ![](/assets/images/Doctor-Hackthebox/doctor-beta.png)
+
+Viendo la página http://doctors.htb/archive aparece en blanco, pero en el código fuente se ve que recoge como parámetro lo que se ponga en el título del mensaje que se postea.
+Con wappalizer veo que la web utiliza el lenguaje python y la tecnología flask.
+Busco información acerca de como explotar flask y encuentro lo siguiente:
+
+[](https://www.exploit-db.com/exploits/46386)
+[](https://pequalsnp-team.github.io/cheatsheet/flask-jinja2-ssti)
+[](https://www.onsecurity.co.uk/blog/server-side-template-injection-with-jinja2/)
