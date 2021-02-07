@@ -72,3 +72,15 @@ Cambio el título y pongo lo siguiente para la reverse shell:
 Y al acceder a la página archive obtengo la shell :)
 
 ![](/assets/images/Doctor-Hackthebox/doctor-shell.png)
+
+Ejecuto linPEAS.sh y veo lo siguiente:
+
+/var/log/apache2/backup:10.10.14.4 - -
+[05/Sep/2020:11:17:34 +2000] "POST /reset_password?
+email=Guitar123" 500 453 "http://doctor.htb/reset_password"
+Pruebo esa contraseña con el usuario shaun, que había
+visto anteriormente listando el contenido de /home y
+funciona!
+su shaun
+password: Guitar123
+Ya puedo leer el user.txt en el home de shaun.
