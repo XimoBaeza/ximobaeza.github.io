@@ -20,7 +20,7 @@ tags:
 
 ![](/assets/images/Doctor-Hackthebox/doctor-hackthebox.png)
 
-Una máquina muy interesante, en la cual nos aprovechamos de una vulnerabilidad llamada Server Side Template Injection para la intrusión inicial, y de una mala configuración en splunk para la escalada de privilegios.
+Una máquina muy interesante, en la cual nos aprovechamos de una vulnerabilidad llamada Server Side Template Injection para la intrusión inicial, y de una mala configuración en splunkd para la escalada de privilegios.
 
 ## Escaneo de puertos
 
