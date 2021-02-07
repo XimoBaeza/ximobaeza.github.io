@@ -48,3 +48,9 @@ Busco información acerca de como explotar flask y encuentro lo siguiente:
 [https://pequalsnp-team.github.io/cheatsheet/flask-jinja2-ssti](https://pequalsnp-team.github.io/cheatsheet/flask-jinja2-ssti)<br>
 [https://www.onsecurity.co.uk/blog/server-side-template-injection-with-jinja2/](https://www.onsecurity.co.uk/blog/server-side-template-injection-with-jinja2/)<br>
 
+Parece ser que se puede explotar una vulnerabilidad llamada `Server Side Template Injection`.
+Éstos links ayudan a entender la vulnerabilidad, y en el último link veo que se pueden ekecutar comandos con ésta inyección:
+```
+{{request.application.__globals__.__builtins__.__import__('os').popen('id').read()}}
+```
+Creo un mensaje que contenga la inyección en el título
