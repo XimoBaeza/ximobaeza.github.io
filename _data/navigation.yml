@@ -8,6 +8,8 @@ main:
     url: /
   - title: "Artículos"
     url: /year-archive/
+  - title: "Etiquetas"
+    url: /tags/
   # - title: "Sample Collections"
   #   url: /collection-archive/
   # - title: "Sitemap"
