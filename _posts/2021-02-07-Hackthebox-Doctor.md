@@ -56,3 +56,7 @@ Parece ser que se puede explotar una vulnerabilidad llamada `Server Side Templat
 Creo un mensaje que contenga la inyección en el título
 
 ![](/assets/images/Doctor-Hackthebox/doctor-inyeccion.png)
+
+Y accedo a la página archive, y en el código fuente aparece lo siguiente:
+
+![](/assets/images/Doctor-Hackthebox/doctor-comandos.png)
