@@ -97,7 +97,7 @@ wget https://raw.githubusercontent.com/cnotin/SplunkWhisperer2/master/PySplunkWh
 
 Viendo la página del proyecto observo que por defecto se ejecuta un calc.exe como payload. Lo cambio por una reverse shell en bash de pentestmonkey así:
 
-wget https://raw.githubusercontent.com/cnotin/SplunkWhisperer2/master/PySplunkWhisperer2/PySplunkWhisperer2_remote.py
+![](/assets/images/Doctor-Hackthebox/doctor-monkey.png)
 
 Viendo la página del proyecto observo que por defecto se ejecuta un calc.exe como payload.
 
