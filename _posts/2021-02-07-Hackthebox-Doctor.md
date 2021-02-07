@@ -44,6 +44,6 @@ Viendo la página http://doctors.htb/archive aparece en blanco, pero en el códi
 Con wappalizer veo que la web utiliza el lenguaje python y la tecnología flask.
 Busco información acerca de como explotar flask y encuentro lo siguiente:
 
-[](https://www.exploit-db.com/exploits/46386)
-[](https://pequalsnp-team.github.io/cheatsheet/flask-jinja2-ssti)
-[](https://www.onsecurity.co.uk/blog/server-side-template-injection-with-jinja2/)
+[https://www.exploit-db.com/exploits/46386](https://www.exploit-db.com/exploits/46386)
+[https://pequalsnp-team.github.io/cheatsheet/flask-jinja2-ssti](https://pequalsnp-team.github.io/cheatsheet/flask-jinja2-ssti)
+[https://www.onsecurity.co.uk/blog/server-side-template-injection-with-jinja2/](https://www.onsecurity.co.uk/blog/server-side-template-injection-with-jinja2/)
