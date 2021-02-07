@@ -69,3 +69,6 @@ Cambio el título y pongo lo siguiente para la reverse shell:
 ```
 ![](/assets/images/Doctor-Hackthebox/doctor-reverse.png)
 
+Y al acceder a la página archive obtengo la shell :)
+
+![](/assets/images/Doctor-Hackthebox/doctor-shell.png)
