@@ -5,7 +5,7 @@ excerpt: "En este artículo vemos como explotar un stack buffer overflow en wind
 date: 2021-02-13
 classes: wide
 header:
-  teaser: /assets/images/Stack-Buffer-Overflow-Windows/buffer-overflow.jpg
+  teaser: /assets/images/Stack-Buffer-Overflow-Windows/buffer-overflow-windows.jpg
   teaser_home_page: true
 categories:
   - Buffer-Overflow
