@@ -41,4 +41,12 @@ Si lanzamos un nmap a la ip de la máquina tiene que responder con los puertos 2
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/nmap-slmail.png)
 
+En la máquina windows siempre ejecutaremos las aplicaciones SLMail y inmunity debuguer como administrador. Abrimos las dos aplicaciones, en el debuguer pulsamos en File/Atach, seleccionamos el proceso SLmail, y pulsamos en el icono Run Program o pulsamos F9.
+
+![](/assets/images/Stack-Buffer-Overflow-Windows/slmail.png)
+
+![](/assets/images/Stack-Buffer-Overflow-Windows/inmunity.png)
+
+
+
 
