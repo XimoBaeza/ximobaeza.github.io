@@ -118,5 +118,9 @@ Ejecutamos el exploit y vemos lo que sucede en el inmunity debuguer. Podemos ver
 
 Vemos en la salida por pantalla de la ejecución del exploit que al enviar 2800 "A" es cuando desbordamos el tamaño del buffer, se sobreescribe el EIP y el programa no puede continuar porque la dirección 0x41414141 que son nuestras "A" no apunta a ninguna dirección de memória válida.
 
+El siguiente paso es crear un patrón de carácteres aleatorios con una utilidad de Mataploit llamada pattern_create.
+
+![](/assets/images/Stack-Buffer-Overflow-Windows/pattern_create.png)
+
 
 
