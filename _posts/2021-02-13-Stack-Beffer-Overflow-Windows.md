@@ -161,3 +161,7 @@ if __name__ == '__main__':
 
 ```
 
+Ejecutamos el script y vemos que ahora el valor de EIP es 39694438. Bien pues ahora con pattern_offset podemos calcular exactamente cuantos carácteres tenemos que enviar justo antes de que se sobreescriba el EIP.
+
+![](/assets/images/Stack-Buffer-Overflow-Windows/offset.png)
+
