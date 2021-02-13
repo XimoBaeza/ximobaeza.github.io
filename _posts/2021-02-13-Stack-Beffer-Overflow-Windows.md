@@ -51,5 +51,11 @@ En este punto si hacemos un searchsploit slmail vemos que hay varios exploits qu
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/searchsploit-slmail.png)
 
+## Explicación sencilla del stack buffer overflow
+
+Una explicación sencilla sería la siguiente. Cuando alguien se autentica contra el SLMail, tiene que introducir lógicamente un usuario y contraseña. Bien pues en el campo PASS no se está controlando la cantidad de bytes que puede aceptar, con lo cual si nosotros le pasamos más de los que tiene definidos a nivel de código se producirá un desbordamiento de memória, y estaremos sobreescribiendo partes de la memória que no deberian de tomar esos valores para una ejecución normal del programa.
+
+Se trata de tomar el control del registro EIP, que siempre apunta a la próxima dirección de memoria a ejecutar, para que el flujo del programa se desplace hasta la dirección que nosotros queramos, donde habremos sobreescrito los valores de esas direcciones con nuestro shellcode, que nos lanzará una reverse shell y nos conectará a la máquina victima.
+
 
 
