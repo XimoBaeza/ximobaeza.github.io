@@ -10,7 +10,6 @@ header:
 categories:
   - HackTheBox
 tags:
-  - Sqli
   - Web Exploiting
   - Privilege Escalation
   - Python
