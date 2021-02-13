@@ -47,6 +47,9 @@ En la máquina windows siempre ejecutaremos las aplicaciones SLMail y inmunity d
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/inmunity.png)
 
+En este punto si hacemos un searchsploit slmail vemos que hay varios exploits que se aprovechan del campo PASS en el momento de la autenticación. Con lo cual el campo vulnerable es PASS.
+
+![](/assets/images/Stack-Buffer-Overflow-Windows/searchsploit-slmail.png)
 
 
 
