@@ -110,9 +110,13 @@ if __name__ == '__main__':
 
 ```
 
-El exploit le pasará nuestras "A" en el campo PASS de 350 en 350, la primera vez una "A", la segunda 350 "A", la tercera 700 "A", etc.
+El exploit le pasará nuestras "A" en el campo PASS de 350 en 350, la primera vez una "A", la segunda 350 "A", la tercera 700 "A", etc. También podremos ver cuantas "A" necesitamos pasarle para que se detenga la ejecución del programa y provocar una denegación de servicio.
 
 Ejecutamos el exploit y vemos lo que sucede en el inmunity debuguer. Podemos ver que se ha corrompido el programa porque hemos sobreescrito direcciones de memória, incluido el registro EIP que ahora apunta a la dirección 0x41414141, que son nuestras "A", y al no ser una dirección válida se detiene el flujo de ejecución.
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/exploit-inicial.png)
+
+Vemos en la salida por pantalla de la ejecución del exploit que al enviar 2800 "A" es cuando desbordamos el tamaño del buffer, se sobreescribe el EIP y el programa no puede continuar porque la dirección 0x41414141 que son nuestras "A" no apunta a ninguna dirección de memória válida.
+
+
 
