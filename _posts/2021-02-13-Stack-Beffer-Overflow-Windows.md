@@ -110,6 +110,8 @@ if __name__ == '__main__':
 
 ```
 
+El exploit le pasará nuestras "A" en el campo PASS de 350 en 350, la primera vez una "A", la segunda 350 "A", la tercera 700 "A", etc.
+
 Ejecutamos el exploit y vemos lo que sucede en el inmunity debuguer. Podemos ver que se ha corrompido el programa porque hemos sobreescrito direcciones de memória, incluido el registro EIP que ahora apunta a la dirección 0x41414141, que son nuestras "A", y al no ser una dirección válida se detiene el flujo de ejecución.
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/exploit-inicial.png)
