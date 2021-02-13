@@ -21,3 +21,22 @@ En este artículo veremos cómo explotar un buffer overflow en una aplicación v
 
 Primero quiero agradecer a s4vitar por su tutorial y por servirme de inspiración.
 
+Necesitaremos una máquina virtual con windows 7 x86, el software SLMail v5.5, inmunity debuguer y mona.py para añadir funcionalidades al debuguer.
+
+Links de descarga:
+
+[SLMail 5.5](https://slmail.software.informer.com/5.5/)
+[Inmunity debuguer](https://www.immunityinc.com/products/debugger/)
+[Mona.py](https://github.com/corelan/mona/blob/master/mona.py)
+
+Instalaremos SLMail y inmunity debuguer en la máquina windows, y luego añadiremos mona al inmunity debuguer. Para ello descargaremos el script y lo colocaremos en la ruta C:\Program Files\Inmunity Inc\Inmunity Debuguer\PyCommands\.
+
+Además tendremos que crear reglas en el firewall de windows para permitan el tráfico en los puertos 25 y 110.
+
+Cuando tengamos esto ya podemos empezar a practicar.
+
+Si lanzamos un nmap a la ip de la máquina tiene que responder con los puertos 25 y 110 abiertos, entre otros.
+
+![](/assets/images/Stack-Buffer-Overflow-Windows/nmap-slmail.png)
+
+
