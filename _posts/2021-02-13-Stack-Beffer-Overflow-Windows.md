@@ -31,7 +31,9 @@ Links de descarga:
 
 Instalaremos SLMail y inmunity debuguer en la máquina windows, y luego añadiremos mona al inmunity debuguer. Para ello descargaremos el script y lo colocaremos en la ruta C:\Program Files\Inmunity Inc\Inmunity Debuguer\PyCommands\.
 
-Además tendremos que crear reglas en el firewall de windows para permitan el tráfico en los puertos 25 y 110.
+Además tendremos que crear reglas en el firewall de windows para permitan el tráfico en los puertos 25 y 110. Y por último deshabilitar el DEP con el siguiente comando ejecutado como administrador:
+
+'bcdedit.exe /set {current} nx AllwaysOff'
 
 Cuando tengamos esto ya podemos empezar a practicar.
 
