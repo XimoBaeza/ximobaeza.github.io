@@ -25,9 +25,9 @@ Necesitaremos una máquina virtual con windows 7 x86, el software SLMail v5.5, i
 
 Links de descarga:
 
-[SLMail 5.5](https://slmail.software.informer.com/5.5/)
-[Inmunity debuguer](https://www.immunityinc.com/products/debugger/)
-[Mona.py](https://github.com/corelan/mona/blob/master/mona.py)
+[SLMail 5.5](https://slmail.software.informer.com/5.5/)<br>
+[Inmunity debuguer](https://www.immunityinc.com/products/debugger/)<br>
+[Mona.py](https://github.com/corelan/mona/blob/master/mona.py)<br>
 
 Instalaremos SLMail y inmunity debuguer en la máquina windows, y luego añadiremos mona al inmunity debuguer. Para ello descargaremos el script y lo colocaremos en la ruta C:\Program Files\Inmunity Inc\Inmunity Debuguer\PyCommands\.
 
