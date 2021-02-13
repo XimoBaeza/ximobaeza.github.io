@@ -1,7 +1,7 @@
 ---
 layout: single
 title: Stack Buffer Overflow en Windows
-excerpt: "En este artículo vemos como explotar un stack buffer overflow en windows utilizando SLMail, un software vulnerable y una máquina virtual con windows 7."
+excerpt: "En este artículo vemos cómo explotar un stack buffer overflow en una aplicación vulnerable llamada SLMail corriendo en una máquina virtual con windows 7 x86."
 date: 2021-02-13
 classes: wide
 header:
@@ -14,4 +14,8 @@ tags:
   - Python
   - Pentesting
 ---
+
+En este artículo veremos cómo explotar un buffer overflow en una aplicación vulnerable llamada SLMail corriendo en una máquina virtual Windows 7 x86.
+
+Primero quiero agradecer a s4vitar por su tutorial y por servirme de inspiración.
 
