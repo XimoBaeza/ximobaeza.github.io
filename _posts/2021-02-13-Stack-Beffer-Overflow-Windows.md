@@ -293,6 +293,8 @@ Ejecutamos `!mona find -s "\xff\xe4" -m SLMFC.DLL`. Esto nos buscará las direcc
 
 Por último modificamos el script para que envíe las 2606 "A" + la dirección que hace el salto al ESP + los nops (son instrucciones que no hacen nada para dar tiempo a que se interprete el shellcode) + el shellcode.
 
+La dirección de salto al ESP tiene que ir en formato little endian, pero gracias a la línea `from struct import pack` podemos escribir la dirección así `pack("<L", 0x5f4a358f)` y pack ya se encarga de que se interprete en little endian. De no usar pack tendríamos que escribir la dirección empezando desde la derecha `0x8f354a5f`.
+
 El código final es el siguiente:
 
 ```python
