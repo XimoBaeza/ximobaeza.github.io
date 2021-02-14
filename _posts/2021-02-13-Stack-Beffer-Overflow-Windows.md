@@ -211,7 +211,7 @@ Ejecutamos el script y vemos que efectivamente EIP ahora vale 0x42424242 que son
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/offset3.png)
 
-En este punto, lo que pongamos detrás de nuestras 2606 "A" va a sobreescribir el valor de EIP. Y lo que enviemos después de sobreescribir el EIP se va a meter en el registro ESP, que es donde empieza la pila o el stack de la memória. Y justo ahí es donde tenemos que sobreescribir lo que haya para meter nuestro shellcode. Después haremos que EIP apunte a una dirección de memória que contenga un salto al ESP, con lo que conseguiremos redirigir el flujo de ejecución del programa para que ejecute nuestro shellcode o código malicioso, que nos lanzará la deseada reverse shell.
+En este punto, lo que pongamos detrás de nuestras 2606 "A" va a sobreescribir el valor de EIP. Y lo que enviemos después de sobreescribir el EIP se va a meter en la dirección de memória donde apunta el registro ESP, que es donde empieza la pila o el stack de la memória. Y justo ahí es donde tenemos que sobreescribir lo que haya para meter nuestro shellcode. Después haremos que EIP apunte a una dirección de memória que contenga un salto al ESP, con lo que conseguiremos redirigir el flujo de ejecución del programa para que ejecute nuestro shellcode o código malicioso, que nos lanzará la deseada reverse shell.
 
 Pero antes tenemos que calcular los badchars, que son carácteres que se deben evitar porque pueden hacer que nuestro shellcode no se interprete correctamente.
 
