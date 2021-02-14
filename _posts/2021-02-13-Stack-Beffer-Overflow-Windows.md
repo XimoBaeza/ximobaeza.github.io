@@ -361,3 +361,7 @@ Nos ponemos a la escucha en el puerto 443 que es el que habíamos definido en el
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/final.png)
 
+## Conclusiones
+
+Hemos redirigido el flujo de ejecución del programa slmail para que ejecute nuestro shellcode, nos lance una conexión accediendo a la máquina windows con privilegios de SYSTEM, o sea los máximos privilegios, y el programa después ha seguido su flujo habitual de ejecución, con lo cual esta vez no corrompe y sigue funcionando como si no hubiera pasado nada.
+
