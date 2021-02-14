@@ -287,7 +287,7 @@ Volvemos al inmunity y escribimos `!mona modules`. Esto nos sacará los módulos
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/modules.png)
 
-Ejecutamos `!mona find -s "\xff\xe4" -m SLMFC.DLL`. Esto nos buscará las direcciones de memória que contienen un jmp ESP (FFE4) en el módulo SLMFC.DLL. Elegiremos una dirección que no contenga ninguno de lo sbadchars encontrados anteriormente. En nuestro caso 5F4A358F.
+Ejecutamos `!mona find -s "\xff\xe4" -m SLMFC.DLL`. Esto nos buscará las direcciones de memória que contienen un jmp ESP (FFE4) en el módulo SLMFC.DLL. Elegiremos una dirección que no contenga ninguno de los badchars encontrados anteriormente. En nuestro caso 5F4A358F.
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/jmpesp.png)
 
