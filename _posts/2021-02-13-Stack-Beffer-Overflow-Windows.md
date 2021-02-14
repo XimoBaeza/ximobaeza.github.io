@@ -291,7 +291,7 @@ Ejecutamos `!mona find -s "\xff\xe4" -m SLMFC.DLL`. Esto nos buscará las direcc
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/jmpesp.png)
 
-Por último modificamos el script para que envíe las 1606 "A" + la dirección que hace el salto al ESP + los nops (son instrucciones que no hacen nada para dar tiempo a que se interprete el shellcode) + el shellcode.
+Por último modificamos el script para que envíe las 2606 "A" + la dirección que hace el salto al ESP + los nops (son instrucciones que no hacen nada para dar tiempo a que se interprete el shellcode) + el shellcode.
 
 El código final es el siguiente:
 
