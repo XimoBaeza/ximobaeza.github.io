@@ -363,11 +363,12 @@ Nos ponemos a la escucha en el puerto 443 que es el que habíamos definido en el
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/final.png)
 
+## Método alternativo al uso de NOPs
+
+Otra forma de acceder pero sin usar los NOPs justo antes del shellcode, sería desplazando la pila. De nuevo con la utilidad de Metasploit nasm_shell.rb y desde la línea de comandos pondríamos `sub esp,0x10` para desplazar la pila 10 posiciones, y nos da como resultado `83EC10`. En nuestro exploit en vez de poner los NOPs ("\x90"*16) pondríamos "\x83\xEC\x10".
+
 ## Conclusiones
 
 Hemos redirigido el flujo de ejecución del programa slmail para que ejecute nuestro shellcode, nos lance una conexión accediendo a la máquina windows con privilegios de SYSTEM, o sea los máximos privilegios, y el programa después ha seguido su flujo habitual de ejecución, con lo cual esta vez no corrompe y sigue funcionando como si no hubiera pasado nada.
 
-## Método alternativo al uso de NOPs
-
-Otra forma de acceder pero sin usar los NOPs justo antes del shellcode, sería desplazando la pila. De nuevo con la utilidad de Metasploit nasm_shell.rb y desde la línea de comandos pondríamos `sub esp,0x10` para desplazar la pila 10 posiciones, y nos da como resultado `83EC10`. En nuestro exploit en vez de poner los NOPs ("\x90"*16) pondríamos "\x83\xEC\x10".
 
