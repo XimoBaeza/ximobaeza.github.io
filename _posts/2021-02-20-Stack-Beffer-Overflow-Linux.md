@@ -25,6 +25,8 @@ Utilizaremos una máquina virtual con Ubuntu Server 14.04 x86, gdb como debuguer
 
 Nos conectamos por ssh a la máquina ubuntu y empezamos.
 
-![](/assets/images/Stack-Buffer-Overflow-Linux/ssh.jpg)
+![](/assets/images/Stack-Buffer-Overflow-Linux/ssh.png)
+
+
 
 
