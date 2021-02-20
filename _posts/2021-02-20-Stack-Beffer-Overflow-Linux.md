@@ -81,6 +81,10 @@ Vemos que ahora EIP vale 0x41413341. Pues ahora con `patern search` nos muestra 
 
 ![](/assets/images/Stack-Buffer-Overflow-Linux/registers.png)
 
+Seguidamente, para comprobar que tenemos el control del registro EIP le pasaremos al binario 68 "A" + 4 "B", y si vemos que EIP apunta a la dirección 0x42424242 que son nuestras "B" en hexadecimal, tendremos el control pudiendo hacer que EIP apunte donde nosotros queramos. Lo probamos y vemos que efectívamente EIP apunta a 0x42424242.
+
+![](/assets/images/Stack-Buffer-Overflow-Linux/eip42.png)
+
 
 
 
