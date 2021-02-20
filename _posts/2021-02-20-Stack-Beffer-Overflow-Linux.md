@@ -58,3 +58,7 @@ Pero si le pasamos a través de python por ejemplo 100 "A" vemos que corrompe el
 
 Al pasarle más bytes de los que acepta la variable buffer hemos sobreescrito registros de la memoria que ahora apuntan a direcciones de memoria que no tienen sentido y por eso corrompe el programa.
 
+En este punto si ejecutamos gdb vuln entraremos en el debuguer para ver que está ocurriendo con la ejecución del programa. Una vez dentro de gdb si ejecutamos checksec vuln vemos que tiene todas las protecciones deshabilitadas, esto es así porque lo hemos compilado con unos parámetros para que no las tenga y poder entender como funciona el buffer overflow.
+
+![](/assets/images/Stack-Buffer-Overflow-Linux/checksec.png)
+
