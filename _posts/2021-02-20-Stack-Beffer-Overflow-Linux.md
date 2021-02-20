@@ -73,5 +73,13 @@ Bien, ahora ejecutamos el debuguer junto al binario `gdb vuln`. Si ponemos `r ho
 
 ![](/assets/images/Stack-Buffer-Overflow-Linux/registers.png)
 
+Ahora se trata, como en el artículo anterior en el que explotábamos el stack buffer overflow en una máquina windows, de tomar el control del registro EIP, para que el flujo del programa se desplace hasta la dirección que nosotros queramos, que será donde habremos sobreescrito lo que haya con nuestro shellcode o instrucciones maliciosas, que nos deovlverán una shell , en este caso de root por ser el binario SUID.
+
+Creamos un patrón de 100 carácteres aleatorios, ejecutamos el binario con ese patrón y vemos el valor de EIP. Esto lo hacemos desde gdb con `pattern arg 100` y luego `r` para ejecutarlo.
+
+![](/assets/images/Stack-Buffer-Overflow-Linux/pattern.png)
+
+
+
 
 
