@@ -77,7 +77,7 @@ Ahora se trata, como en el artículo anterior en el que explotábamos el stack b
 
 Creamos un patrón de 100 carácteres aleatorios, ejecutamos el binario con ese patrón y vemos el valor de EIP. Esto lo hacemos desde gdb con `pattern arg 100` y luego `r` para ejecutarlo.
 
-Vemos que ahora EIP vale 0x41413341. Pues ahora con `patern search` nos muestra el offset del EIP, que es la cantidad exacta de bytes que tenemos que pasarle al binario justo antes de que se sobreescriba el EIP. De esta forma tendremos el control del registro EIP y podremos sobreescribirlo con lo que queramos.
+Vemos que ahora EIP vale 0x41413341. Pues ahora con `patern search` nos muestra el offset del EIP, que es la cantidad exacta de bytes que tenemos que pasarle al binario justo antes de que se sobreescriba el EIP. De esta forma tendremos el control del registro EIP y podremos sobreescribirlo con lo que queramos. En este caso el offset es 68.
 
 ![](/assets/images/Stack-Buffer-Overflow-Linux/registers.png)
 
