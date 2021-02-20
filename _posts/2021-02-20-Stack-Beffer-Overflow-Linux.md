@@ -62,3 +62,12 @@ En este punto si ejecutamos gdb vuln entraremos en el debuguer para ver que est�
 
 ![](/assets/images/Stack-Buffer-Overflow-Linux/checksec.png)
 
+En el siguiente paso tendremos que deshabilitar la aleatorización de las direcciones de memoria. Explicado de forma sencilla sería que de forma predeterminada el kernel de linux asigna direcciones de memoria aleatorias que van cambiando con cada ejecución. En este ejemplo para hacer la explotación más fácil y entender como funciona lo vamos a deshabilitar.
+
+Si ejecutamos `ldd vuln` varias veces veremos que la librería libc cada vez apunta a una dirección de memoria diferente. Para deshabilitarlo nos ponemos como usuario root y ejecutamos `echo 0 > /proc/sys/kernel/randomize_va_space`. Por defecto tiene un valor de 2, y ahora nosotros lo hemos puesto a 0.
+
+![](/assets/images/Stack-Buffer-Overflow-Linux/randomize.png)
+
+
+
+
