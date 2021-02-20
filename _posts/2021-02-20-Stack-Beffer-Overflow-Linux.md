@@ -1,7 +1,7 @@
 ---
 layout: single
 title: Stack Buffer Overflow en Linux
-excerpt: "En este artículo vemos cómo explotar un stack buffer overflow en un sistema Linux. Nos aprovecharemos de un desbordamiento de memoria en un binario compilado con unos parámetros que lo hacen vulnerable. Además, al tener el binario permisos SUID nos permitirá realizar una escalada de privilegios y obtener una shell de root."
+excerpt: "En este artículo vemos cómo explotar un stack buffer overflow en un sistema Linux. Nos aprovecharemos de un desbordamiento de memoria en un binario en el que a nivel de código no se ha tenido en cuenta el controlar la cantidad de bytes que se le pueden enviar. Además, al tener el binario permisos SUID nos permitirá realizar una escalada de privilegios y obtener una shell de root."
 date: 2021-02-20
 classes: wide
 header:
@@ -17,7 +17,7 @@ tags:
 
 ![](/assets/images/Stack-Buffer-Overflow-Linux/buffer-overflow.jpg)
 
-En este artículo vemos cómo explotar un stack buffer overflow en un sistema Linux. Nos aprovecharemos de un desbordamiento de memoria en un binario compilado con unos parámetros que lo hacen vulnerable. Además, al tener el binario permisos SUID nos permitirá realizar una escalada de privilegios y obtener una shell de root.
+En este artículo vemos cómo explotar un stack buffer overflow en un sistema Linux. Nos aprovecharemos de un desbordamiento de memoria en un binario en el que a nivel de código no se ha tenido en cuenta el controlar la cantidad de bytes que se le pueden enviar. Además, al tener el binario permisos SUID nos permitirá realizar una escalada de privilegios y obtener una shell de root.
 
 De nuevo agradecimientos a s4vitar por sus tutoriales.
 
@@ -34,6 +34,19 @@ Después necesitaremos instalar peda como complemento de gdb, para ello vamos a 
 `git clone https://github.com/longld/peda.git ~/peda`<br>
 `echo "source ~/peda/peda.py" >> ~/.gdbinit`
 
+A continuación crearemos un sencillo código en lenguaje C para después compilarlo y obtener el binario sobre el que trabajaremos.
 
+```
+#include <stdio.h>
 
+void vulnerable(char *buff){
+        char buffer[64];
+        strcpy(buffer, buff);
+}
+
+void main(int argc, char **argv){
+        vulnerable(argv[1]);
+}
+
+```
 
