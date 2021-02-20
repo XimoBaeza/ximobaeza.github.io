@@ -85,6 +85,10 @@ Seguidamente, para comprobar que tenemos el control del registro EIP le pasaremo
 
 ![](/assets/images/Stack-Buffer-Overflow-Linux/eip42.png)
 
+Bien pues ahora le pasaremos 68 "A" + 4 "B" + 200 "C" y vemos como las 200 "C" se colocan en la pila o stack, sobreescribiendo un montón de direcciones de memoria. Esto lo podemos ver ejecutando `x/100wx $esp`. Todas las direcciones de memoria en las que pone 0x43434343 son nuestras "C".
+
+![](/assets/images/Stack-Buffer-Overflow-Linux/esp.png)
+
 
 
 
