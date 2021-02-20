@@ -89,6 +89,9 @@ Bien pues ahora le pasaremos 68 "A" + 4 "B" + 200 "C" y vemos como las 200 "C" s
 
 ![](/assets/images/Stack-Buffer-Overflow-Linux/esp.png)
 
+A continuación lo que hacemos es pasarle al binario NOPs (\x90), que son instrucciones que no ejecutan nada, simplemente hacen que el flujo de ejecución se desplace a través de ellos sin hacer nada. Lo hacemos de esta forma: `r $(python -c 'print "A"*68 + "B"*4 + "\x90"*200')`. Si volvemos a ejecutar `x/100wx $esp` vemos nuestros NOPs.
+
+![](/assets/images/Stack-Buffer-Overflow-Linux/nops.png)
 
 
 
