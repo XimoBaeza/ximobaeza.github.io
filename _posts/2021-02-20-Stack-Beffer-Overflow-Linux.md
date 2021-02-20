@@ -71,7 +71,7 @@ Si ejecutamos `ldd vuln` varias veces veremos que la librería libc cada vez apu
 
 Bien, ahora ejecutamos el debuguer junto al binario `gdb vuln`. Si ponemos `r holaquetal` estaremos haciendo lo mismo de antes pero desde dentro del debuguer. Probamos con `r $(python -c 'print "A"*100')` y nos fijamos en lo que nos muestra gdb. Podemos ver que el registro EIP que siempre apunta a la próxima dirección de memoria a ejecutar ahora vale 0x41414141, que son nuestras "A" en hexadecimal. Por eso corrompe el programa, porque 0x41414141 no es una dirección de memoria válida.
 
-![](/assets/images/Stack-Buffer-Overflow-Linux/registers.png)
+![](/assets/images/Stack-Buffer-Overflow-Linux/eip.png)
 
 Ahora se trata, como en el artículo anterior en el que explotábamos el stack buffer overflow en una máquina windows, de tomar el control del registro EIP, para que el flujo del programa se desplace hasta la dirección que nosotros queramos, que será donde habremos sobreescrito lo que haya con nuestro shellcode o instrucciones maliciosas, que nos deovlverán una shell , en este caso de root por ser el binario SUID.
 
