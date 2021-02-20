@@ -47,3 +47,14 @@ Lo compilamos de la siguiente forma:
 
 Nos creará un binario llamado vuln, al que le asignaremos de usuario propietario root y permisos SUID, lo que hace que se pueda ejecutar temporalmente con los permisos del usuario propietario, en este caso root, lo que nos permitirá cuando explotemos el buffer overflow que nos devuelva una shell de root. Lo ejecutaremos como usuario ximo y nos devolverá una shell de root.
 
+Lo siguiente será ponernos como usuario root y ejecutar los siguientes comandos: `chown root:root vuln` y `chmod u+s vuln`. El primero pondrá como propietario y grupo asignado al usuario root y el segundo le aplicará permiso SUID al binario.
+
+## Empieza la explotación
+
+Si ejecutamos el binario y le pasamos como parámetro cualquier cadena menor a 64 bytes vemos que no pasa nada. Ejemplo: `./vuln holaquetal`
+Pero si le pasamos a través de python por ejemplo 100 "A" vemos que corrompe el programa y nos devuelve una violación de segmento.
+
+![](/assets/images/Stack-Buffer-Overflow-Linux/error.png)
+
+Al pasarle más bytes de los que acepta la variable buffer hemos sobreescrito registros de la memoria que ahora apuntan a direcciones de memoria que no tienen sentido y por eso corrompe el programa.
+
