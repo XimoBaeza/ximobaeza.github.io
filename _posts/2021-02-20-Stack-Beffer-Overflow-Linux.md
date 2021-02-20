@@ -36,17 +36,8 @@ Después necesitaremos instalar peda como complemento de gdb, para ello vamos a 
 
 A continuación crearemos un sencillo código en lenguaje C para después compilarlo y obtener el binario sobre el que trabajaremos.
 
-```
-#include <stdio.h>
 
-void vulnerable(char *buff){
-        char buffer[64];
-        strcpy(buffer, buff);
-}
+![](/assets/images/Stack-Buffer-Overflow-Linux/codigo.png)
 
-void main(int argc, char **argv){
-        vulnerable(argv[1]);
-}
-
-```
+En este código simplemente se llama a una función que se llama vulnerable, le pasamos lo que pongamos como primer argumento, que se guarda en una variable llamada buff. Después definimos otra variable buffer a la que le asignamos un tamaño de buffer de 64 bytes, y hacemos una copia de buff a buffer, con lo cual, si el tamaño de bytes que enviamos supera esos 64 se producirá el desbordamiento que nos permitirá explotar la vulnerabilidad.
 
