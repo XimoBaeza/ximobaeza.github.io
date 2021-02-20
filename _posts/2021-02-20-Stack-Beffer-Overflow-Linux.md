@@ -27,7 +27,7 @@ Nos conectamos por ssh a la máquina ubuntu y empezamos.
 
 ![](/assets/images/Stack-Buffer-Overflow-Linux/ssh.png)
 
-Primero instalaremos gdb y git desde la línea de comandos `apt install gdb git`
+Primero instalaremos gdb, git y gcc desde la línea de comandos `apt install gdb git gcc`
 
 Después necesitaremos instalar peda como complemento de gdb, para ello vamos a la página del proyecto en github [https://github.com/longld/peda](https://github.com/longld/peda) y ejecutamos estos dos comandos:
 
