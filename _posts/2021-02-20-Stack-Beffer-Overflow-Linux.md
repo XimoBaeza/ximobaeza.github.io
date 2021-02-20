@@ -93,6 +93,8 @@ A continuación lo que hacemos es pasarle al binario NOPs (\x90), que son instru
 
 ![](/assets/images/Stack-Buffer-Overflow-Linux/nops.png)
 
+Ahora podemos hacer que el registro EIP apunte a una dirección intermedia dentro de los NOPs para que el flujo de ejecución se desplace hasta donde terminan estos NOPs, que será donde sobreescribiremos lo que haya con nuestro shellcode que nos ejecutará un /bin/sh y nos devolverá una shell.
+
 
 
 
