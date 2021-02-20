@@ -69,5 +69,9 @@ Si ejecutamos `ldd vuln` varias veces veremos que la librería libc cada vez apu
 ![](/assets/images/Stack-Buffer-Overflow-Linux/randomize.png)
 
 
+Bien, ahora ejecutamos el debuguer junto al binario `gdb vuln`. Si ponemos `r holaquetal` estaremos haciendo lo mismo de antes pero desde dentro del debuguer. Probamos con `r $(python -c 'print "A"*100')` y nos fijamos en lo que nos muestra gdb. Podemos ver que el registro EIP que siempre apunta a la próxima dirección de memoria a ejecutar ahora vale 0x41414141, que son nuestras "A" en hexadecimal. Por eso corrompe el programa, porque 0x41414141 no es una dirección de memoria válida.
+
+![](/assets/images/Stack-Buffer-Overflow-Linux/registers.png)
+
 
 
