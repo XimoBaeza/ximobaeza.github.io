@@ -13,6 +13,7 @@ tags:
   - Buffer Overflow
   - Linux
   - Pentesting
+  - Privilege Escalation
 ---
 
 ![](/assets/images/Stack-Buffer-Overflow-Linux/buffer-overflow.jpg)

@@ -13,6 +13,7 @@ tags:
   - Buffer Overflow
   - Python
   - Pentesting
+  - Windows
 ---
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/buffer-overflow-windows.jpg)
