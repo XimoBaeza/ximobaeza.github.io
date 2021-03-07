@@ -69,10 +69,34 @@ su cry0l1t3
 Password: mySup3rP4s5w0rd!!
 ```
 
+Ya puedo leer el fichero user.txt
+
 Subo a la máquina el script linpeas.sh y lo ejecuto y encuentro la contraseña del usuario mrb3n –> mrb3n_Ac@d3my!
 
 ![](/assets/images/Academy-Hackthebox/linpeas.png)
 
 
+Con el comando su me convierto en el usuario mrb3n
 
+![](/assets/images/Academy-Hackthebox/su.png)
+
+Con sudo -l veo que puedo ejecutar el comando composer como root
+
+![](/assets/images/Academy-Hackthebox/sudo.png)
+
+Busco composer en gtfobins y veo que hay una forma de explotarlo cuando se puede usar con sudo
+
+![](/assets/images/Academy-Hackthebox/gtfobins.png)
+
+Ejecuto los comandos y obtebgo la shell de root
+
+```
+TF=$(mktemp -d)
+echo '{"scripts":{"x":"/bin/sh -i 0<&3 1>&3 2>&3"}}' >$TF/composer.json
+sudo composer --working-dir=$TF run-script x
+```
+
+![](/assets/images/Academy-Hackthebox/root.png)
+
+Ya puedo leer el root.txt
 
