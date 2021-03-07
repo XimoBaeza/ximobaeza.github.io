@@ -39,6 +39,9 @@ Veo que los parámetros que viajan en la petición son:
 uid=ximo&password=ximo&confirm=ximo&roleid=0
 Me llamala atención el parámetro roleid. Envío la petición al repeater y modifico el valor a 1.
 Gobuster descubre una página que se llama admin.php, así que pruebo el usuario que he registrado con el roleid=1 y accedo como admin.
+
+![](/assets/images/Academy-Hackthebox/admin.png)
+
 Gobuster encuentra también un fichero readme dentro del directorio academy, que dice que se está usando un framework llamado laravel.
 
 
