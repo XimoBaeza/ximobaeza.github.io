@@ -69,4 +69,10 @@ su cry0l1t3
 Password: mySup3rP4s5w0rd!!
 ```
 
+Subo a la máquina el script linpeas.sh y lo ejecuto y encuentro la contraseña del usuario mrb3n –> mrb3n_Ac@d3my!
+
+![](/assets/images/Academy-Hackthebox/linpeas.png)
+
+
+
 
