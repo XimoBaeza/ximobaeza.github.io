@@ -64,5 +64,9 @@ Voy al directorio academy y con ls -a veo que hay un fichero .env que puedo leer
 
 En el directorio home hay varios usuarios, pruebo la contraseña con todos y hay uno que funciona.
 
-`su cry0l1t3<br>
-Password: mySup3rP4s5w0rd!!`
+```
+su cry0l1t3
+Password: mySup3rP4s5w0rd!!
+```
+
+
