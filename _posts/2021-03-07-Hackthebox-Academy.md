@@ -23,3 +23,13 @@ Resolución de la máquina *Academy* de Hack The Box, una máquina Linux de difi
 ## Escaneo de puertos
 
 ![](/assets/images/Academy-Hackthebox/nmap.png)
+
+Puertos 22,80 y 33060 abiertos.
+Empiezo por el 80. Accedo con el navegador a la ip 10.10.10.215 y me dice que no se puede abrir la página.
+Veo que en el escaneo con nmap aparece el dominio academy.htb, lo añado al fichero hosts y ya me deja acceder con el nombre del dominio.
+
+![](/assets/images/Academy-Hackthebox/web.png)
+
+Lanzo gobuster para fuzzear los directorios y ficheros de la web.
+
+![](/assets/images/Academy-Hackthebox/gobuster.png)
