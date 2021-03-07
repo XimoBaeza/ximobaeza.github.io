@@ -13,6 +13,7 @@ tags:
   - Web Exploiting
   - Privilege Escalation
   - Pentesting
+  - Linux
 ---
 
-
+![](/assets/images/Academy-Hackthebox/academy.png)
