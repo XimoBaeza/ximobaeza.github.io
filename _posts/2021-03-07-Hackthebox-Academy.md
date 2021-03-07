@@ -37,6 +37,9 @@ Lanzo gobuster para fuzzear los directorios y ficheros de la web.
 Mientras tanto me registro en la página y capturo la petición con burpsuite.
 Veo que los parámetros que viajan en la petición son:
 uid=ximo&password=ximo&confirm=ximo&roleid=0
+
+![](/assets/images/Academy-Hackthebox/burp.png)
+
 Me llamala atención el parámetro roleid. Envío la petición al repeater y modifico el valor a 1.
 Gobuster descubre una página que se llama admin.php, así que pruebo el usuario que he registrado con el roleid=1 y accedo como admin.
 
