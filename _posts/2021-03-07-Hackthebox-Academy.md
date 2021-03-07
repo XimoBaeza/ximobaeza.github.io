@@ -44,4 +44,15 @@ Gobuster descubre una página que se llama admin.php, así que pruebo el usuario
 
 Gobuster encuentra también un fichero readme dentro del directorio academy, que dice que se está usando un framework llamado laravel.
 
+Me llama la atención esto : Fix issue with dev-staging-01.academy.htb
+Lo añado al fichero hosts y accedo a la página.
+
+![](/assets/images/Academy-Hackthebox/dev.png)
+
+Sabiendo que el frameowrk usado es laravel empiezo a buscar vulnerabilidades relacionadas con este framework.
+Encuentro un exploit para metasploit y decido usarlo.
+Seteo el app_key, que me lo da la web del subdominio en la sección de environment, el rhosts academy.htb, lhost tun0 y vhost dev-staging-01.academy.htb y obtengo una shell.
+
+![](/assets/images/Academy-Hackthebox/msf.png)
+
 
