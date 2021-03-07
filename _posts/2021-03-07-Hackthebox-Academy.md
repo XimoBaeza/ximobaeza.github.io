@@ -17,3 +17,9 @@ tags:
 ---
 
 ![](/assets/images/Academy-Hackthebox/academy.png)
+
+Resolución de la máquina *Academy* de Hack The Box, una máquina Linux de dificultad fácil según la plataforma en la cual nos aprovechamos del parámetro rolid para crear un usuario administrador en la web, luego utilizamos un exploit para el framework *laravel* para acceder al sistema y por último aprovechamos que podemos ejecutar el comando *composer* con sudo sin contraseña para escalar privilegios y obtener una shell de root.
+
+## Escaneo de puertos
+
+![](/assets/images/Academy-Hackthebox/nmap.png)
