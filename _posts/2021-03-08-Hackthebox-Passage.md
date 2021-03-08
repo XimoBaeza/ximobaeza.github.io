@@ -44,4 +44,8 @@ Lo descargo con searchsploit -m php/webapps/48800.py, lo ejecuto y me da diréct
 
 ![](/assets/images/Passage-Hackthebox/cutenews.png)
 
+Lo siguiente es ponerme en escucha en el puerto 9001 con rlwrap nc -lvnp 9001 y ejecutar una reverse shell en bash para recibir la shell.
+
+![](/assets/images/Passage-Hackthebox/shell.png)
+
 
