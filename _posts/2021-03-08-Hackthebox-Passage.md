@@ -110,4 +110,40 @@ Me guardo el hash de paul en un fichero y lo crackeo con hashcat
 
 ![](/assets/images/Passage-Hackthebox/hashcat.png)
 
+e26f3e86d1f8108120723ebe690e5d3d61628f4130076ec6cb43f16f497273cd:atlanta1
 
+Y con `su paul` me convierto en el usuario paul.
+
+![](/assets/images/Passage-Hackthebox/paul.png)
+
+Ya puedo leer el user.txt
+
+## Escalada al usuario navdav
+
+A continuación me pongo a enumerar lo que hay en la home de paul y veo que dentro de .ssh hay claves privadas. Las miro y veo que son del usuario nadav!
+
+Simplemente copio el contenido de la clave privada y lo pego en un fichero local.
+Luego cambio los permisos para que no me de error con `chmod 600 id_rsa` y me conecto con `ssh -i id_rsa nadav@10.10.10.206`
+
+![](/assets/images/Passage-Hackthebox/navdav.png)
+
+Llegado a este punto empiezo enumerando los ficheros de la home del usuario y veo en .ICEauthority que se repite varias veces el texto MAGIC-COOKIE.
+Busco información sobre eso (iceauthority privilege escalation) y encuentro una página en la que explican un bug que permite crear ficheros con permisos de root.
+
+[https://unit42.paloaltonetworks.com/usbcreator-d-bus-privilege-escalation-in-ubuntu-desktop/](https://unit42.paloaltonetworks.com/usbcreator-d-bus-privilege-escalation-in-ubuntu-desktop/)
+
+Ya que puedo crear ficheros con privilegios de root, me creo en mi máquina un par de claves ssh con ssh-keygen. Después copio el contenido de mi clave pública y me creo un fichero en la máquina passage con el contenido de mi clave.
+
+Por último ejecuto
+
+```
+gdbus call --system --dest com.ubuntu.USBCreator --object-path /com/ubuntu/USBCreator --method com.ubuntu.USBCreator.Image /dev/shm/key /root/.ssh/authorized_keys true
+```
+
+para copiar mi clave pública en root/.ssh/authorized_keys :)
+
+Sólo me queda conectarme por ssh con el usuario root, ya que no me va a pedir contraseña.
+
+![](/assets/images/Passage-Hackthebox/root.png)
+
+Ya puedo leer el root.txt
