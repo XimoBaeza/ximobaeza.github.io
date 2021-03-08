@@ -48,4 +48,24 @@ Lo siguiente es ponerme en escucha en el puerto 9001 con rlwrap nc -lvnp 9001 y 
 
 ![](/assets/images/Passage-Hackthebox/shell.png)
 
+Convierto la shell en una shell totalmente interactiva.
+Con which python compruebo de tiene python instalado, y luego como siempre:
+```
+python -c ‘import pty;pty.spawn(“/bin/bash”)’
+ctrl + z
+stty raw -echo
+fg
+export TERM=xterm
+```
+
+![](/assets/images/Passage-Hackthebox/interactiva.png)
+
+En el directorio home veo que hay dos usuarios, paul y nadav, pero no puedo listar lo que hay dentro.
+Empiezo a enumerar el directorio var/www/html/CuteNews y encuentro un fichero que tiene unos hashes en base64.
+
+El fichero es var/www/html/CuteNews/cdata/users/lines
+Y contiene lo siguiente:
+
+![](/assets/images/Passage-Hackthebox/users.png)
+
 
