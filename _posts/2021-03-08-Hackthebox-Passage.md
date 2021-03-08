@@ -127,6 +127,8 @@ Luego cambio los permisos para que no me de error con `chmod 600 id_rsa` y me co
 
 ![](/assets/images/Passage-Hackthebox/navdav.png)
 
+## Escalada a root
+
 Llegado a este punto empiezo enumerando los ficheros de la home del usuario y veo en .ICEauthority que se repite varias veces el texto MAGIC-COOKIE.
 Busco información sobre eso (iceauthority privilege escalation) y encuentro una página en la que explican un bug que permite crear ficheros con permisos de root.
 
