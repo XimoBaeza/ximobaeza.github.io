@@ -24,6 +24,24 @@ Resolución de la máquina *Passage* de Hack The Box, una máquina Linux de difi
 
 ![](/assets/images/Passage-Hackthebox/nmap.png)
 
+Puertos 22 y 80 abiertos.
 
+Empiezo mirando la web en el puerto 80.
+
+![](/assets/images/Passage-Hackthebox/web.png)
+
+No hay robots.txt y en el código fuente tampoco hay nada interesante.
+
+Decido fuzzear con ffuf pero me doy cuenta de que a los pocos segundos de empezar a buscar directorios se corta el acceso a la web, como si me hubieran baneado la ip.
+
+## Intrusión inicial
+
+En el pie de página veo “Powered by CuteNews” así que pruebo con searchsploit a ver si encuentra algo relacionado.
+
+Y bingo! Encuentro ésto CuteNews 2.1.2 - Remote Code Execution
+
+Lo descargo con searchsploit -m php/webapps/48800.py, lo ejecuto y me da diréctamente ejecución de comandos.
+
+![](/assets/images/Passage-Hackthebox/cutenews.png)
 
 
