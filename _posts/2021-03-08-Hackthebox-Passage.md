@@ -5,7 +5,7 @@ excerpt: "Resolución de la máquina *Passage* de Hack The Box, una máquina Lin
 date: 2021-03-08
 classes: wide
 header:
-  teaser: /assets/images/Academy-Hackthebox/passage.png
+  teaser: /assets/images/Passage-Hackthebox/passage.png
   teaser_home_page: true
 categories:
   - HackTheBox
