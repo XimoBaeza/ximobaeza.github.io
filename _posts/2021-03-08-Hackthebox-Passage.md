@@ -56,6 +56,7 @@ ctrl + z
 stty raw -echo
 fg
 export TERM=xterm
+stty rows 58 columns 236
 ```
 
 ## Escalada al usuario paul
