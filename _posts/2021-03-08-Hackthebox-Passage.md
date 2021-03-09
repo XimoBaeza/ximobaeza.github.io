@@ -110,7 +110,7 @@ Me guardo el hash de paul en un fichero y lo crackeo con hashcat
 
 e26f3e86d1f8108120723ebe690e5d3d61628f4130076ec6cb43f16f497273cd:atlanta1
 
-Y con `su paul` me convierto en el usuario paul.
+Y con `su paul` y la contraseña atlanta1 me convierto en el usuario paul.
 
 ![](/assets/images/Passage-Hackthebox/paul.png)
 
