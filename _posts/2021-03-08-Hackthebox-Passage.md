@@ -58,9 +58,6 @@ fg
 export TERM=xterm
 ```
 
-![](/assets/images/Passage-Hackthebox/interactiva.png)
-
-
 ## Escalada al usuario paul
 
 En el directorio home veo que hay dos usuarios, paul y nadav, pero no puedo listar lo que hay dentro.
