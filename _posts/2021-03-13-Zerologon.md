@@ -25,4 +25,9 @@ tags:
 
 En éste artículo atacaremos un Windows Server 2019 con el rol de Active Directory utilizando Zerologon para obtener los hashes de las contraseñas de todos los usuarios y máquinas del dominio. Quiero recalcar que para realizar éste ataque no necesitamos credenciales de ningún tipo ni estar unidos al dominio, lo que hace de ésta vulnerabilidad una de las más críticas encontradas hasta la fecha. Teniendo el hash de la contraseña del administrador del dominio utilizaremos la conocida técnica de pass the hash para obtener acceso al sistema con la cuenta del administrador.
 
+Utilizaremos una máquina virtual con Linux para la parte del atacante y otra
+con Windows Server 2019 y Active Directory para la víctima.
+
+![](/assets/images/Zerologon/windows-server.png)
+
 
