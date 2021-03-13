@@ -56,4 +56,9 @@ Y vemos que nos dice que es vulnerable a zerologon. Ésta vulnerabilidad afecta
 a todas las versiones de Windows Server desde la 2008 R2, siempre que no
 cuenten con las últimas actualizaciones instaladas. Microsoft sacó un parche en agosto, pero por lo visto había que editar el registro a mano para asegurarse de que el sistema quedaba completamente parcheado. En concreto la clave del registro es FullSecureChannelProtection y tiene que tener un valor de “1”. Se supone que en febrero tenía que salir la actualización que parcheaba definitivamente la vulnerabilidad, con lo cual deben de haber muchos servidores a dia de hoy que siguen siendo vulnerables.
 
+El nombre del servidor y el del dominio se pueden averiguar rápidamente con
+crackmapexec.
+
+![](/assets/images/Zerologon/info.png)
+
 
