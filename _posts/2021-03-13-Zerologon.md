@@ -94,6 +94,16 @@ complete!
 
 ![](/assets/images/Zerologon/exploit.png)
 
+Ahora ejecutamos el script de impacket secretsdump para obtener los hashes de
+las contraseñas. Le pasamos un hash que corresponde a todo ceros para la cuenta
+de máquina del controlador del dominio, por eso ponemos dom01.local/DC01$ con
+un signo de dolar al final.
 
+![](/assets/images/Zerologon/secrets.png)
+
+Obtenemos tanto los hashes de las cuentas de usuario como los de las cuentas de
+máquinas. Ésto es importante para poder después de ganar acceso al sistema
+restablecer la contraseña de la cuenta de equipo y dejarla como estaba para que
+todo siga funcionando correctamente.
 
 
