@@ -106,4 +106,11 @@ máquinas. Ésto es importante para poder después de ganar acceso al sistema
 restablecer la contraseña de la cuenta de equipo y dejarla como estaba para que
 todo siga funcionando correctamente.
 
+Para usar pass the hash podemos utilizar wmiexec y obtendremos una sesión de
+cmd de la cuenta del administrador del dominio.
+
+![](/assets/images/Zerologon/pth.png)
+
+Vemos que al ejecutar whoami nos devuelve dom01\administrador
+
 
