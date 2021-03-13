@@ -61,4 +61,39 @@ crackmapexec.
 
 ![](/assets/images/Zerologon/info.png)
 
+## Explotando la vulnerabilidad y accediendo al sistema
+
+Existen varias pruebas de concepto que explotan zerologon pero yo en este caso
+voy a utilizar ésta: [https://github.com/dirkjanm/CVE-2020-1472](https://github.com/dirkjanm/CVE-2020-1472)
+
+Igual que antes, nos clonamos el repositorio con `git clone
+https://github.com/dirkjanm/CVE-2020-1472.git`
+
+![](/assets/images/Zerologon/clone.png)
+
+Y ahora ejecutamos el script en python, pero antes vamos a crear un entorno
+virtual con virtualenv para que no nos den problemas los scripts de impacket.
+
+Para ello ejecutamos 
+```
+virtualenv zerologon
+source zerologon/bin/activate
+```
+
+Ahora nos vamos al directorio opt y nos clonamos la suite de herramientas de
+impacket
+
+```
+git clone https://github.com/SecureAuthCorp/impacket
+cd impacket
+sudo pip install .
+```
+
+Ahora si, ejecutamos el exploit y vemos que funciona y nos dice Exploit
+complete!
+
+![](/assets/images/Zerologon/exploit.png)
+
+
+
 
