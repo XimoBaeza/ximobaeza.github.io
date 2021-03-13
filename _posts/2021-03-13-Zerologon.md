@@ -11,7 +11,7 @@ administrador."
 date: 2021-03-13
 classes: wide
 header:
-  teaser: /assets/images/Zerologon/zerologon.png
+  teaser: /assets/images/Zerologon/zerologon.jpg
   teaser_home_page: true
 categories:
   - Windows
@@ -20,3 +20,5 @@ tags:
   - Privilege Escalation
   - Pentesting
 ---
+
+
