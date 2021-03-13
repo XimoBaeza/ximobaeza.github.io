@@ -34,8 +34,22 @@ En hackplayers explican en profundidad la vulnerabilidad.
 
 [https://www.hackplayers.com/2020/09/zerologon-desatado-comprometer-DCs-facilmente.html](https://www.hackplayers.com/2020/09/zerologon-desatado-comprometer-DCs-facilmente.html)
 
+Citando el artículo de hackplayers:
+
 Zerologon se aprovecha de una vulnerabilidad en el servicio Netlogon, que se utiliza para diversas tareas relacionadas con la autenticación de usuarios y máquinas en controladores de dominio.
 
 Netlogon utiliza un protocolo criptográfico basado en AES-CFB8 que define IVs fijos de 16 bytes de ceros en lugar de IVs aleatorios. Con esto, dada una clave aleatoria, hay una probabilidad de 1 entre 256 de que el cifrado AES de un bloque de todo ceros de como salida todo ceros. Dado que las cuentas de equipo no se bloquean después de intentos de inicio de sesión no válidos, simplemente podemos intentarlo varias veces hasta que obtengamos esa clave y la autenticación sea exitosa. La media esperada de intentos necesarios será de 256, lo que en la práctica sólo lleva unos tres segundos. Con este método, podemos iniciar sesión como cualquier ordenador del dominio. Esto incluye controladores de dominio de respaldo e incluso el propio controlador de dominio de destino. Conseguiremos cambiar la contraseña del equipo controlador de dominio a una cadena vacía (todo ceros) para obtener privilegios y poder obtener los hashese de todos los usuarios de Active Directory. Después de vulnerar el equipo podemos volver a cambiar la contraseña de la cuenta de equipo controlador de dominio para que todo vuelva a funcionar correctamente. Ahora el DC vuelve a comportarse normalmente y el atacante se ha convertido en administrador de dominio.
+
+## Testeando si el servidor es vulnerable
+
+La empresa Secura publicó una herramienta para identificar si una máquina es
+vulnerable a Zerologon en un repositorio de github [https://github.com/SecuraBV/CVE-2020-1472](https://github.com/SecuraBV/CVE-2020-1472)
+
+Nos clonamos la herramienta con `git clone
+https://github.com/SecuraBV/CVE-2020-1472.git` y la lanzamos contra nuestro
+controlador de dominio virtualizado, que se llama DC01 y tiene la ip
+192.168.160.131
+
+![](/assets/images/Zerologon/testing.png)
 
 
