@@ -150,4 +150,7 @@ Para comprobar si todo ha ido bien podemos ejecutar de nuevo nuestra primera
 ejecución de secretsdump y esta vez debería dar error al no estar la contraseña
 de la cuenta del equipo vacía.
 
+![](/assets/images/Zerologon/error.png)
 
+Y efectívamente, todo ha vuelto a la normalidad pero tenemos acceso al equipo
+como administrador del dominio.
