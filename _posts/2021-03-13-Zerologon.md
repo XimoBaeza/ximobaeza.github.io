@@ -101,10 +101,9 @@ un signo de dolar al final.
 
 ![](/assets/images/Zerologon/secrets.png)
 
-Obtenemos tanto los hashes de las cuentas de usuario como los de las cuentas de
-máquinas. Ésto es importante para poder después de ganar acceso al sistema
-restablecer la contraseña de la cuenta de equipo y dejarla como estaba para que
-todo siga funcionando correctamente.
+Obtenemos los hashes de las cuentas de usuario, en este caso es solo la del
+administrador, la del invitado y la de krbtgt porque no hay más usuarios, pero si huviera más nos los mostraría
+también.
 
 Para usar pass the hash podemos utilizar wmiexec y obtendremos una sesión de
 cmd de la cuenta del administrador del dominio.
@@ -117,7 +116,9 @@ podemos hacer lo que queramos, por ejemplo crearnos un usuario administrador
 oculto para que no se vea desde windows, activar el escritorio remoto editando
 el registro con los comandos reg y conectarnos por RDP al servidor.
 
-Pero no nos olvidemos de que tenemos que restablecer la contraseña de la cuenta
+## Restableciendo la contraseña original
+
+No nos olvidemos de que tenemos que restablecer la contraseña de la cuenta
 de quipo para que todo funcione correctamente a nivel de active directory. Esto
 es debido a que hemos cambiado la contraseña de la cuenta del equipo a nivel de
 active directory, pero en la sam local sigue estando la original.
