@@ -116,6 +116,11 @@ podemos hacer lo que queramos, por ejemplo crearnos un usuario administrador
 oculto para que no se vea desde windows, activar el escritorio remoto editando
 el registro con los comandos reg y conectarnos por RDP al servidor.
 
+Además teniendo en cuenta que hay una GPO que se aplica a cualquier equipo al
+unirlo al dominio que añade al administrador del dominio al grupo de
+administradores local, podremos acceder a cualquier equipo de la red que esté
+unido al dominio.
+
 ## Restableciendo la contraseña original
 
 No nos olvidemos de que tenemos que restablecer la contraseña de la cuenta
