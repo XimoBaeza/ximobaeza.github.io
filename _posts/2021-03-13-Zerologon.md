@@ -99,6 +99,10 @@ las contraseñas. Le pasamos un hash que corresponde a todo ceros para la cuenta
 de máquina del controlador del dominio, por eso ponemos dom01.local/DC01$ con
 un signo de dolar al final.
 
+```
+secretsdump.py -hashes :31d6cfe0d16ae931b73c59d7e0c089c0 'dom01.local/DC01$@192.168.160.131'
+```
+
 ![](/assets/images/Zerologon/secrets.png)
 
 Obtenemos los hashes de las cuentas de usuario, en este caso es solo la del
