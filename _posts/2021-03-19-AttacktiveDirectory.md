@@ -5,7 +5,7 @@ excerpt: "En este artículo veremos como resolver el reto de Try Hack Me *Attack
 date: 2021-03-19
 classes: wide
 header:
-  teaser: /assets/images/AttacktiveDirectory/active-directory.png
+  teaser: /assets/images/AttacktiveDirectory/AD.png
   teaser_home_page: true
 categories:
   - Active Directory
