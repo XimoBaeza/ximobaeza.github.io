@@ -14,3 +14,18 @@ tags:
   - Pentesting
   - Privilege Escalation
 ---
+
+![](/assets/images/AttacktiveDirectory/AD.png)
+
+En este artículo veremos como resolver el reto de Try Hack Me *Attacktive Directory*, donde veremos como aprovecharnos de varias vulnerabilidades para explotar un controlador de dominio Windows Server. Nos aprovecharemos del script *kerbrute* para everiguar los usuarios del dominio. Después usaremos el script de impacket *GetNPUsers.py* para hacer un ataque de tipo *ASREPRoasting* y hacernos con un ticket de kerberos que posteriormente crackearemos para sacar la contraseña del usuario. Con esas credenciales descubriremos por SMB un fichero que contiene otra contraseña. Y descubriremos que ese usuario puede hacer un DCSync y hacer un volcado de los hashes del dominio. Ya con el hash del administrador usaremos *psexec.py* para conectarnos.
+
+## Escaneo de puertos con nmap
+
+Empezamos escaneando todo el rango de puertos de la máquina y exportando el resultado al fichero allPorts
+
+```
+nmap -p- --open -T5 -v -n 10.10.225.26 -oG allPorts
+```
+
+![](/assets/images/AttacktiveDirectory/nmap.png)
+
