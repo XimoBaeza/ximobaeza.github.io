@@ -180,3 +180,25 @@ enum4linux complete on Fri Mar 19 20:36:50 2021
 	.local
 
 
+A continuación la plataforma nos proporciona una lista con nombres de usuarios y otra lista con contraseñas que podemos usar como diccionarios, y nos dice que usemos *kerbrute*
+
+
+4. What command within Kerbrute will allow us to enumerate valid usernames?
+
+	userenum
+
+Ejecutamos kerbrute con el parámetro userenum para que nos busque usuarios del dominio.
+
+![](/assets/images/AttacktiveDirectory/kerbrute.png)
+
+
+5. What notable account is discovered? (These should jump out at you)
+
+	svc-admin
+
+6. What is the other notable account is discovered? (These should jump out at you)
+
+	backup
+
+
+
