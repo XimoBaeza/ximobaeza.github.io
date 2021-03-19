@@ -200,5 +200,27 @@ Ejecutamos kerbrute con el parámetro userenum para que nos busque usuarios del 
 
 	backup
 
+Una vez finalizada la enumeración de cuentas de usuario, podemos intentar abusar de una función dentro de Kerberos con un método de ataque llamado ASREPRoasting. ASReproasting ocurre cuando una cuenta de usuario tiene el privilegio establecido "No requiere autenticación previa". Esto significa que la cuenta no necesita proporcionar una identificación válida antes de solicitar un Ticket Kerberos en la cuenta de usuario especificada.
+
+Nos guardamos la lista de usuarios encontrados en un fichero llamado validusers.txt y ejecutamos la herramienta de impacket para ver si alguno tiene el privilegio requerido para el ASReproasting.
+
+![](/assets/images/AttacktiveDirectory/impacket.png)
+
+Vemos que el usuario svc-admin tiene el privilegio requerido y nos devuelve el ticket en un formato que se puede crackear.
+
+Con `hashcat --example-hashes | grep krb -B3 | tail -n 5` vemos que el modo es 18200.
+
+Muestro dos formas de crackear la contraseña.
+
+Con hashcat:
+
+![](/assets/images/AttacktiveDirectory/hashcat.png)
+
+Con john:
+
+![](/assets/images/AttacktiveDirectory/john.png)
+
+Contraseña: management2005
+
 
 
