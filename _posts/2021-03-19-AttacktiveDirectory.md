@@ -39,3 +39,15 @@ nmap -sC -sV -p53,80,88,135,139,389,445,464,593,636,3268,3269,3389,5985,9389,470
 
 ![](/assets/images/AttacktiveDirectory/targeted.png)
 
+Podemos ver el nombre del dominio `DNS_Domain_Name: spookysec.local` y el de l amáquina `DNS_Computer_Name: AttacktiveDirectory.spookysec.local`
+
+Lo primero que nos pregunta la plataforma es:
+
+1. What tool will allow us to enumerate port 139/445?
+
+	enum4linux
+
+Utilizamos enum4linux para enumerar la máquina y el resultado es el siguiente:
+
+![](/assets/images/AttacktiveDirectory/enum4linux.png)
+
