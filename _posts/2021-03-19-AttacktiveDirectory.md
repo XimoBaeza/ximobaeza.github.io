@@ -29,3 +29,13 @@ nmap -p- --open -T5 -v -n 10.10.225.26 -oG allPorts
 
 ![](/assets/images/AttacktiveDirectory/nmap.png)
 
+Vemos puertos como kerberos, smb, winrm y rdp entre otros.
+
+Escaneo con scripts de enumeración y detección de versiones a los puertos abiertos encontrados.
+
+```
+nmap -sC -sV -p53,80,88,135,139,389,445,464,593,636,3268,3269,3389,5985,9389,47001,49664,49666,49669,49672,49675,49676,49679,49685,49696,49816 10.10.225.26 -oN targeted
+```
+
+![](/assets/images/AttacktiveDirectory/targeted.png)
+
