@@ -222,5 +222,100 @@ Con john:
 
 Contraseña: management2005
 
+7. We have two user accounts that we could potentially query a ticket from. Which user account can you query a ticket from with no password?
+
+	svc-admin
+
+8. Looking at the Hashcat Examples Wiki page, what type of Kerberos hash did we retrieve from the KDC? (Specify the full name)
+
+	Kerberos 5 AS-REP etype 23
+
+9. What mode is the hash?
+
+	18200
+
+10. Now crack the hash with the modified password list provided, what is the user accounts password?
+
+	management2005
+
+A continuación vamos a enumerar el servicio SMB con las credenciales obtenidas.
+
+```
+smbclient -L 10.10.225.26 -U 'svc-admin'
+```
+Le proporcionamos la contraseña y nos lista las carpetas compartidas del servidor.
+
+![](/assets/images/AttacktiveDirectory/smb1.png)
+
+Me llama la atención la carpeta backup. Me conecto a la máquina y veo que hay un fichero de texto, así que me lo descargo.
+
+[](/assets/images/AttacktiveDirectory/smb2.png)
+
+Viendo el contenido del fichero descargado veo que es una cadena es base64, así que ejecuto `echo "YmFja3VwQHNwb29reXNlYy5sb2NhbDpiYWNrdXAyNTE3ODYw" | base64 -d; echo` y me da la contraseña del usuario backup.
+
+Ya podemos responder las siguientes preguntas de la plataforma.
+
+11. Using utility can we map remote SMB shares?
+
+	smbclient
+
+12. Which option will list shares?
+	
+	-L
+
+13. How many remote shares is the server listing?
+
+	6
+
+14. There is one particular share that we have access to that contains a text file. Which share is it?
+
+	backup
+
+15. What is the content of the file?
+
+	YmFja3VwQHNwb29reXNlYy5sb2NhbDpiYWNrdXAyNTE3ODYw
+
+16. Decoding the contents of the file, what is the full contents?
+
+	backup@spookysec.local:backup2517860
+
+Hay un ataque que se llama DCSync que se aprovecha de que un usuario tenga los permisos Replicating Directory Changes, Replicating Directory Changes All y Replicating Directory Changes In Filtered Set para dumpear los hashes de todas las cuentas de un dominio. Probamos con el usuario backup y el script secretsdump y funciona.
+
+[](/assets/images/AttacktiveDirectory/secrets.png)
+
+Y ya teniendo el hash de la contraseña del administrador puedo conectarme con evil-winrm aprovechando que el puerto de winrm estaba abierto.
+
+[](/assets/images/AttacktiveDirectory/winrm.png)
+
+Ya podemos terminar de contestar las preguntas de la plataforma, obtener las flags y terminar el reto.
+
+17. What method allowed us to dump NTDS.DIT?
+
+	DRSUAPI
+
+18. What is the Administrators NTLM hash?
+
+	0e0363213e37b94221497260b0bcb4fc
+
+19. What method of attack could allow us to authenticate as the user without the password?
+
+	pass the hash
+
+20. Using a tool called Evil-WinRM what option will allow us to use a hash?
+
+	-H
+
+21. svc-admin
+
+	TryHackMe{K3rb3r0s_Pr3_4uth}
+
+22. backup
+
+	TryHackMe{B4ckM3UpSc0tty!}
+
+23. Administrator
+
+	TryHackMe{4ctiveD1rectoryM4st3r}
+
 
 
