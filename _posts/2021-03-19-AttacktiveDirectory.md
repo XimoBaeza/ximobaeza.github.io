@@ -249,7 +249,7 @@ Le proporcionamos la contraseña y nos lista las carpetas compartidas del servid
 
 Me llama la atención la carpeta backup. Me conecto a la máquina y veo que hay un fichero de texto, así que me lo descargo.
 
-[](/assets/images/AttacktiveDirectory/smb2.png)
+![](/assets/images/AttacktiveDirectory/smb2.png)
 
 Viendo el contenido del fichero descargado veo que es una cadena es base64, así que ejecuto `echo "YmFja3VwQHNwb29reXNlYy5sb2NhbDpiYWNrdXAyNTE3ODYw" | base64 -d; echo` y me da la contraseña del usuario backup.
 
@@ -281,11 +281,11 @@ Decoding the contents of the file, what is the full contents?
 
 Hay un ataque que se llama DCSync que se aprovecha de que un usuario tenga los permisos Replicating Directory Changes, Replicating Directory Changes All y Replicating Directory Changes In Filtered Set para dumpear los hashes de todas las cuentas de un dominio. Probamos con el usuario backup y el script secretsdump y funciona.
 
-[](/assets/images/AttacktiveDirectory/secrets.png)
+![](/assets/images/AttacktiveDirectory/secrets.png)
 
 Y ya teniendo el hash de la contraseña del administrador puedo conectarme con evil-winrm aprovechando que el puerto de winrm estaba abierto.
 
-[](/assets/images/AttacktiveDirectory/winrm.png)
+![](/assets/images/AttacktiveDirectory/winrm.png)
 
 Ya podemos terminar de contestar las preguntas de la plataforma, obtener las flags y terminar el reto.
 
