@@ -259,23 +259,23 @@ Using utility can we map remote SMB shares?
 
 	smbclient
 
-12. Which option will list shares?
+Which option will list shares?
 	
 	-L
 
-13. How many remote shares is the server listing?
+How many remote shares is the server listing?
 
 	6
 
-14. There is one particular share that we have access to that contains a text file. Which share is it?
+There is one particular share that we have access to that contains a text file. Which share is it?
 
 	backup
 
-15. What is the content of the file?
+What is the content of the file?
 
 	YmFja3VwQHNwb29reXNlYy5sb2NhbDpiYWNrdXAyNTE3ODYw
 
-16. Decoding the contents of the file, what is the full contents?
+Decoding the contents of the file, what is the full contents?
 
 	backup@spookysec.local:backup2517860
 
@@ -289,31 +289,31 @@ Y ya teniendo el hash de la contraseña del administrador puedo conectarme con e
 
 Ya podemos terminar de contestar las preguntas de la plataforma, obtener las flags y terminar el reto.
 
-17. What method allowed us to dump NTDS.DIT?
+What method allowed us to dump NTDS.DIT?
 
 	DRSUAPI
 
-18. What is the Administrators NTLM hash?
+What is the Administrators NTLM hash?
 
 	0e0363213e37b94221497260b0bcb4fc
 
-19. What method of attack could allow us to authenticate as the user without the password?
+What method of attack could allow us to authenticate as the user without the password?
 
 	pass the hash
 
-20. Using a tool called Evil-WinRM what option will allow us to use a hash?
+Using a tool called Evil-WinRM what option will allow us to use a hash?
 
 	-H
 
-21. svc-admin
+svc-admin
 
 	TryHackMe{K3rb3r0s_Pr3_4uth}
 
-22. backup
+backup
 
 	TryHackMe{B4ckM3UpSc0tty!}
 
-23. Administrator
+Administrator
 
 	TryHackMe{4ctiveD1rectoryM4st3r}
 
