@@ -42,7 +42,7 @@ nmap -sC -sV -p53,80,88,135,139,389,445,464,593,636,3268,3269,3389,5985,9389,470
 
 Lo primero que nos pregunta la plataforma es:
 
-1. What tool will allow us to enumerate port 139/445?
+What tool will allow us to enumerate port 139/445?
 
 	enum4linux
 
@@ -171,11 +171,11 @@ enum4linux complete on Fri Mar 19 20:36:50 2021
 
 ```
 
-2. What is the NetBIOS-Domain Name of the machine?
+What is the NetBIOS-Domain Name of the machine?
 
 	THM-AD
 
-3. What invalid TLD do people commonly use for their Active Directory Domain?
+What invalid TLD do people commonly use for their Active Directory Domain?
 
 	.local
 
@@ -183,7 +183,7 @@ enum4linux complete on Fri Mar 19 20:36:50 2021
 A continuación la plataforma nos proporciona una lista con nombres de usuarios y otra lista con contraseñas que podemos usar como diccionarios, y nos dice que usemos *kerbrute*
 
 
-4. What command within Kerbrute will allow us to enumerate valid usernames?
+What command within Kerbrute will allow us to enumerate valid usernames?
 
 	userenum
 
@@ -192,11 +192,11 @@ Ejecutamos kerbrute con el parámetro userenum para que nos busque usuarios del 
 ![](/assets/images/AttacktiveDirectory/kerbrute.png)
 
 
-5. What notable account is discovered? (These should jump out at you)
+What notable account is discovered? (These should jump out at you)
 
 	svc-admin
 
-6. What is the other notable account is discovered? (These should jump out at you)
+What is the other notable account is discovered? (These should jump out at you)
 
 	backup
 
@@ -222,19 +222,19 @@ Con john:
 
 Contraseña: management2005
 
-7. We have two user accounts that we could potentially query a ticket from. Which user account can you query a ticket from with no password?
+We have two user accounts that we could potentially query a ticket from. Which user account can you query a ticket from with no password?
 
 	svc-admin
 
-8. Looking at the Hashcat Examples Wiki page, what type of Kerberos hash did we retrieve from the KDC? (Specify the full name)
+Looking at the Hashcat Examples Wiki page, what type of Kerberos hash did we retrieve from the KDC? (Specify the full name)
 
 	Kerberos 5 AS-REP etype 23
 
-9. What mode is the hash?
+What mode is the hash?
 
 	18200
 
-10. Now crack the hash with the modified password list provided, what is the user accounts password?
+Now crack the hash with the modified password list provided, what is the user accounts password?
 
 	management2005
 
@@ -255,7 +255,7 @@ Viendo el contenido del fichero descargado veo que es una cadena es base64, así
 
 Ya podemos responder las siguientes preguntas de la plataforma.
 
-11. Using utility can we map remote SMB shares?
+Using utility can we map remote SMB shares?
 
 	smbclient
 
