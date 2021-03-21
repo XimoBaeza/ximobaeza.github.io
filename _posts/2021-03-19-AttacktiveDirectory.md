@@ -48,7 +48,7 @@ What tool will allow us to enumerate port 139/445?
 
 Utilizamos enum4linux para enumerar la máquina y el resultado es el siguiente:
 
-```
+```bash
  ========================== 
 |    Target Information    |
  ========================== 
