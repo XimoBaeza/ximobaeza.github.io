@@ -258,9 +258,12 @@ Me llama la atención la carpeta backup. Me conecto a la máquina y veo que hay 
 Viendo el contenido del fichero descargado veo que es una cadena es base64, así que ejecuto
 ```bash
 echo "YmFja3VwQHNwb29reXNlYy5sb2NhbDpiYWNrdXAyNTE3ODYw" | base64 -d; echo
-backup@spookysec.local:backup2517860
 ```
 y me da la contraseña del usuario backup.
+
+```bash
+backup@spookysec.local:backup2517860
+```
 
 Ya podemos responder las siguientes preguntas de la plataforma.
 
