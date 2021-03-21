@@ -255,7 +255,11 @@ Me llama la atención la carpeta backup. Me conecto a la máquina y veo que hay 
 
 ![](/assets/images/AttacktiveDirectory/smb2.png)
 
-Viendo el contenido del fichero descargado veo que es una cadena es base64, así que ejecuto `echo "YmFja3VwQHNwb29reXNlYy5sb2NhbDpiYWNrdXAyNTE3ODYw" | base64 -d; echo` y me da la contraseña del usuario backup.
+Viendo el contenido del fichero descargado veo que es una cadena es base64, así que ejecuto
+```bash
+echo "YmFja3VwQHNwb29reXNlYy5sb2NhbDpiYWNrdXAyNTE3ODYw" | base64 -d; echo
+```
+y me da la contraseña del usuario backup.
 
 Ya podemos responder las siguientes preguntas de la plataforma.
 
