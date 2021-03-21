@@ -52,7 +52,14 @@ gcc -z execstack -g -fno-stack-protector -mpreferred-stack-boundary=2 ejercicio.
 
 Nos creará un binario llamado vuln, al que le asignaremos de usuario propietario root y permisos SUID, lo que hace que se pueda ejecutar temporalmente con los permisos del usuario propietario, en este caso root, lo que nos permitirá cuando explotemos el buffer overflow que nos devuelva una shell de root. Lo ejecutaremos como usuario ximo y nos devolverá una shell de root.
 
-Lo siguiente será ponernos como usuario root y ejecutar los siguientes comandos: `chown root:root vuln` y `chmod u+s vuln`. El primero pondrá como propietario y grupo asignado al usuario root y el segundo le aplicará permiso SUID al binario.
+Lo siguiente será ponernos como usuario root y ejecutar los siguientes comandos:
+```bash
+chown root:root vuln 
+y
+```bash
+chmod u+s vuln
+```
+El primero pondrá como propietario y grupo asignado al usuario root y el segundo le aplicará permiso SUID al binario.
 
 ## Empieza la explotación
 
@@ -98,7 +105,11 @@ Bien pues ahora le pasaremos 68 "A" + 4 "B" + 200 "C" y vemos como las 200 "C" s
 
 ![](/assets/images/Stack-Buffer-Overflow-Linux/esp.png)
 
-A continuación lo que hacemos es pasarle al binario NOPs (\x90), que son instrucciones que no ejecutan nada, simplemente hacen que el flujo de ejecución se desplace a través de ellos sin hacer nada. Lo hacemos de esta forma: `r $(python -c 'print "A"*68 + "B"*4 + "\x90"*200')`. Si volvemos a ejecutar `x/100wx $esp` vemos nuestros NOPs.
+A continuación lo que hacemos es pasarle al binario NOPs (\x90), que son instrucciones que no ejecutan nada, simplemente hacen que el flujo de ejecución se desplace a través de ellos sin hacer nada. Lo hacemos de esta forma:
+```bash
+r $(python -c 'print "A"*68 + "B"*4 + "\x90"*200')
+```
+Si volvemos a ejecutar `x/100wx $esp` vemos nuestros NOPs.
 
 ![](/assets/images/Stack-Buffer-Overflow-Linux/nops.png)
 
