@@ -54,7 +54,8 @@ Nos creará un binario llamado vuln, al que le asignaremos de usuario propietari
 
 Lo siguiente será ponernos como usuario root y ejecutar los siguientes comandos:
 ```bash
-chown root:root vuln 
+chown root:root vuln
+```
 y
 ```bash
 chmod u+s vuln
