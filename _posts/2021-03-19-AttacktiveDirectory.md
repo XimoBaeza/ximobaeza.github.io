@@ -23,7 +23,7 @@ En este artículo veremos como resolver el reto de Try Hack Me *Attacktive Direc
 
 Empezamos escaneando todo el rango de puertos de la máquina y exportando el resultado al fichero allPorts
 
-```
+```bash
 nmap -p- --open -T5 -v -n 10.10.225.26 -oG allPorts
 ```
 
@@ -33,7 +33,7 @@ Vemos puertos como kerberos, smb, winrm y rdp entre otros.
 
 Escaneo con scripts de enumeración y detección de versiones a los puertos abiertos encontrados.
 
-```
+```bash
 nmap -sC -sV -p53,80,88,135,139,389,445,464,593,636,3268,3269,3389,5985,9389,47001,49664,49666,49669,49672,49675,49676,49679,49685,49696,49816 10.10.225.26 -oN targeted
 ```
 
@@ -240,7 +240,7 @@ Now crack the hash with the modified password list provided, what is the user ac
 
 A continuación vamos a enumerar el servicio SMB con las credenciales obtenidas.
 
-```
+```bash
 smbclient -L 10.10.225.26 -U 'svc-admin'
 ```
 Le proporcionamos la contraseña y nos lista las carpetas compartidas del servidor.
