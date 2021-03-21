@@ -208,7 +208,9 @@ Nos guardamos la lista de usuarios encontrados en un fichero llamado validusers.
 
 Vemos que el usuario svc-admin tiene el privilegio requerido y nos devuelve el ticket en un formato que se puede crackear.
 
-Con `hashcat --example-hashes | grep krb -B3 | tail -n 5` vemos que el modo es 18200.
+Con ```bash
+hashcat --example-hashes | grep krb -B3 | tail -n 5
+``` vemos que el modo es 18200.
 
 Muestro dos formas de crackear la contraseña.
 
