@@ -32,8 +32,10 @@ Primero instalaremos gdb, git y gcc desde la línea de comandos `apt install gdb
 
 Después necesitaremos instalar peda como complemento de gdb, para ello vamos a la página del proyecto en github [https://github.com/longld/peda](https://github.com/longld/peda) y ejecutamos estos dos comandos:
 
-`git clone https://github.com/longld/peda.git ~/peda`<br>
-`echo "source ~/peda/peda.py" >> ~/.gdbinit`
+```baah
+git clone https://github.com/longld/peda.git ~/peda`<br>
+echo "source ~/peda/peda.py" >> ~/.gdbinit
+```
 
 A continuación crearemos un sencillo código en lenguaje C para después compilarlo y obtener el binario sobre el que trabajaremos.
 
@@ -44,7 +46,9 @@ En este código simplemente se llama a una función que se llama vulnerable, le 
 
 Lo compilamos de la siguiente forma:
 
-`gcc -z execstack -g -fno-stack-protector -mpreferred-stack-boundary=2 ejercicio.c -o vuln`
+```baah
+gcc -z execstack -g -fno-stack-protector -mpreferred-stack-boundary=2 ejercicio.c -o vuln
+```
 
 Nos creará un binario llamado vuln, al que le asignaremos de usuario propietario root y permisos SUID, lo que hace que se pueda ejecutar temporalmente con los permisos del usuario propietario, en este caso root, lo que nos permitirá cuando explotemos el buffer overflow que nos devuelva una shell de root. Lo ejecutaremos como usuario ximo y nos devolverá una shell de root.
 
@@ -65,7 +69,11 @@ En este punto si ejecutamos gdb vuln entraremos en el debuguer para ver que est�
 
 En el siguiente paso tendremos que deshabilitar la aleatorización de las direcciones de memoria. Explicado de forma sencilla sería que de forma predeterminada el kernel de linux asigna direcciones de memoria aleatorias que van cambiando con cada ejecución. En este ejemplo para hacer la explotación más fácil y entender como funciona lo vamos a deshabilitar.
 
-Si ejecutamos `ldd vuln` varias veces veremos que la librería libc cada vez apunta a una dirección de memoria diferente. Para deshabilitarlo nos ponemos como usuario root y ejecutamos `echo 0 > /proc/sys/kernel/randomize_va_space`. Por defecto tiene un valor de 2, y ahora nosotros lo hemos puesto a 0.
+Si ejecutamos `ldd vuln` varias veces veremos que la librería libc cada vez apunta a una dirección de memoria diferente. Para deshabilitarlo nos ponemos como usuario root y ejecutamos
+```bash
+echo 0 > /proc/sys/kernel/randomize_va_space
+``` 
+Por defecto tiene un valor de 2, y ahora nosotros lo hemos puesto a 0.
 
 ![](/assets/images/Stack-Buffer-Overflow-Linux/randomize.png)
 
@@ -96,7 +104,11 @@ A continuación lo que hacemos es pasarle al binario NOPs (\x90), que son instru
 
 Ahora podemos hacer que el registro EIP apunte a una dirección intermedia dentro de los NOPs para que el flujo de ejecución se desplace hasta donde terminan estos NOPs, que será donde sobreescribiremos lo que haya con nuestro shellcode que nos ejecutará un /bin/sh y nos devolverá una shell.
 
-Hacemos `r $(python -c 'print "A"*68 + "\x34\xf6\xff\xbf" + "\x90"*200 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80"')` y vemos que efectívamente nos devuelve una shell. Si ejecutamos `whoami` nos devuelve ximo, pero esto es porque estamos dentro del gdb, ahora lo haremos desde fuera del gdb con python y veremos como nos devuelve una shell de root.
+Hacemos
+```bash
+r $(python -c 'print "A"*68 + "\x34\xf6\xff\xbf" + "\x90"*200 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80"')
+```
+y vemos que efectívamente nos devuelve una shell. Si ejecutamos `whoami` nos devuelve ximo, pero esto es porque estamos dentro del gdb, ahora lo haremos desde fuera del gdb con python y veremos como nos devuelve una shell de root.
 
 ![](/assets/images/Stack-Buffer-Overflow-Linux/shell.png)
 
