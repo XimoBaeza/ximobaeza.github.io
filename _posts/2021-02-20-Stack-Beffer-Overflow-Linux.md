@@ -32,7 +32,7 @@ Primero instalaremos gdb, git y gcc desde la línea de comandos `apt install gdb
 
 Después necesitaremos instalar peda como complemento de gdb, para ello vamos a la página del proyecto en github [https://github.com/longld/peda](https://github.com/longld/peda) y ejecutamos estos dos comandos:
 
-```baah
+```bash
 git clone https://github.com/longld/peda.git ~/peda`<br>
 echo "source ~/peda/peda.py" >> ~/.gdbinit
 ```
@@ -46,7 +46,7 @@ En este código simplemente se llama a una función que se llama vulnerable, le 
 
 Lo compilamos de la siguiente forma:
 
-```baah
+```bash
 gcc -z execstack -g -fno-stack-protector -mpreferred-stack-boundary=2 ejercicio.c -o vuln
 ```
 
