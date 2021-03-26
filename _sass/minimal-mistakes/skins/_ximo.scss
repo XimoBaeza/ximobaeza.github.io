@@ -5,8 +5,10 @@ $background-color: #17202A !default;
 $text-color: #e5e9f0 !default;
 $primary-color: #bf616a !default;
 $border-color: mix(#fff, $background-color, 20%) !default;
-$code-background-color: mix(#000, $background-color, 15%) !default;
-$code-background-color-dark: mix(#000, $background-color, 20%) !default;
+/*$code-background-color: mix(#000, $background-color, 15%) !default;*/
+/*$code-background-color-dark: mix(#000, $background-color, 20%) !default;*/
+$code-background-color: #000000 !default;
+*$code-background-color-dark: #000000 !default;
 $form-background-color: mix(#000, $background-color, 15%) !default;
 $footer-background-color: mix(#000, $background-color, 30%) !default;
 /*$link-color: #a3be8c !default;*/
