@@ -112,7 +112,13 @@ Viendo que dice *Use 'city=list' to list available cities* añado ?city=list a l
 
 ![](/assets/images/Luanne-Hackthebox/burp2.png)
 
+Pruebo de inyección que había encontrado antes y funciona, en la respuesta del servidor vemos que nos devuelve el resultado del comando id. Tenemos ejecución de comandos.
 
+![](/assets/images/Luanne-Hackthebox/id.png)
+
+Me pongo a la escucha en el puerto 443 y ejecuto una reverse shell para obtener el acceso inicial.
+
+![](/assets/images/Luanne-Hackthebox/nc.png)
 
 
 
