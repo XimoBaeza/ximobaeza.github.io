@@ -100,6 +100,19 @@ Encuentro el directorio forecast. Accedo y tiene la siguiente pinta:
 
 ![](/assets/images/Luanne-Hackthebox/forecast.png)
 
+Antes habíamos visto que se estaba ejecutando el comando `/usr/libexec/httpd -u -X -s -i 127.0.0.1 -I 3000 -L weather /usr/local/webapi/weather.lua -U _httpd -b /var/www` así que busco por httpd lua vulnerabilities y encuentro una [página](https://www.syhunt.com/pt/index.php?n=Articles.LuaVulnerabilities) donde explican como inyectar código en los scripts en lua.
+
+![](/assets/images/Luanne-Hackthebox/lua.png)
+
+Accedo a http://10.10.10.218/weather/forecast,capturo la petición con burpsuite y la envío al repeater para estar más cómodo.
+
+![](/assets/images/Luanne-Hackthebox/burp1.png)
+
+Viendo que dice *Use 'city=list' to list available cities* añado ?city=list a la petición y devuelve la lista de ciudades.
+
+![](/assets/images/Luanne-Hackthebox/burp2.png)
+
+
 
 
 
