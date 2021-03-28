@@ -44,4 +44,10 @@ Empezamos con el puerto 80. Accedemos a la web y vemos que nos pide autenticaci√
 
 ![](/assets/images/Luanne-Hackthebox/puerto80.png)
 
+Busco en internet por *medusa supervisor process manager default credentials* y encuentro una [p√°gina](https://readthedocs.org/projects/supervisor/downloads/pdf/latest/) donde dice que las credenciales por defecto son user:123
+
+![](/assets/images/Luanne-Hackthebox/default.png)
+
+
+
 
