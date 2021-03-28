@@ -52,6 +52,52 @@ En el puerto 9001 también nos pide credenciales diréctamente. Probamos con esa
 
 ![](/assets/images/Luanne-Hackthebox/puerto9001.png)
 
+Hago click en los diferentes links y veo que muestra algunos procesos, estado de memoria, etc. En el link *Tail -f Stdout* muestra los procesos que están corriendo en el sistema en tiempo real.
+
+![](/assets/images/Luanne-Hackthebox/procesos.png)
+
+Vemos que hay otro servicio httpd en el puerto 3001 que lo está ejecutando el usuario r.michaels y parece ser un servicio de desarrollo ya que está asociado al proceso /var/run/httpd_devel.pid y al directorio /home/r.michaels/devel/www. Y otro en el puerto 3000 que parece ser el servicio en producción con el usuario _httpd y el directorio /var/www.
+
+Pruebo si existe un fichero robots.txt en el puerto 80 y veo que si, y revela un directorio weather.
+
+![](/assets/images/Luanne-Hackthebox/robots.png)
+
+No deja acceder pero viendo el comentario del robots.txt que dice *#returning 404 but still harvesting cities* decido fuzzearlo para ver si encuentro algún subdirectorio dentro.
+
+```bash
+ffuf -u http://10.10.10.218/weather/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+```
+
+```bash
+
+        /'___\  /'___\           /'___\
+       /\ \__/ /\ \__/  __  __  /\ \__/
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/
+         \ \_\   \ \_\  \ \____/  \ \_\
+          \/_/    \/_/   \/___/    \/_/
+
+       v1.3.0 Kali Exclusive <3
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://10.10.10.218/weather/FUZZ
+ :: Wordlist         : FUZZ: /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200,204,301,302,307,401,403,405
+________________________________________________
+
+forecast                [Status: 200, Size: 90, Words: 12, Lines: 2]
+:: Progress: [8243/220560] :: Job [1/1] :: 123 req/sec :: Duration: [0:01:05] :: Errors: 0 ::
+```
+
+Encuentro el directorio forecast. Accedo y tiene la siguiente pinta:
+
+![](/assets/images/Luanne-Hackthebox/forecast.png)
+
 
 
 
