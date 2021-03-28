@@ -87,6 +87,5 @@ Archivo.bin
 Si ejecutamos el comando whoami vemos que efectivamente tenemos privilegios de
 system diréctamente.
 
-![](/assets/images/EternalBlue/system.png
+![](/assets/images/EternalBlue/system.png)
 
-)
