@@ -79,6 +79,14 @@ Solo nos queda ponernos a la escucha en el puerto 9001 que es el que hemos
 elegido para x64, y al ejecutar el exploit recibiremos una conexión de cmd de
 la máquina víctima con los máximos privilegios (system).
 
+Ejecutamos el exploit de la siguiente forma: python eternalblue_exploit7.py IP
+Archivo.bin
+
 ![](/assets/images/EternalBlue/exploit.png)
 
+Si ejecutamos el comando whoami vemos que efectivamente tenemos privilegios de
+system diréctamente.
 
+![](/assets/images/EternalBlue/system.png
+
+)
