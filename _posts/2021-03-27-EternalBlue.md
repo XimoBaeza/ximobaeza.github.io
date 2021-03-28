@@ -66,7 +66,19 @@ A continuación nos metemos en el directorio shellcode y ejecutamos
 
 ![](/assets/images/EternalBlue/shell_prep.png)
 
+En LHOST escribiremos nuestra ip de atacante, en mi caso 192.168.160.129, en
+LPORT x64 el puerto para recibir la conexión usando el archivo x64, en LPORT
+x86 el puerto para recibir la conecxión en x86 que tiene que ser distinto del
+que pongamos en x64, en tipo de shell elegimos la 1 que no utiliza metasploit
+y en la última opción stageless, opción 1.
+
 Esto nos generará un archivo para x86 (sc_x86.bin), otro para x64 (sc_x64.bin)
 y otro que probará el exploit con las dos arquitecturas (sc_all.bin).
+
+Solo nos queda ponernos a la escucha en el puerto 9001 que es el que hemos
+elegido para x64, y al ejecutar el exploit recibiremos una conexión de cmd de
+la máquina víctima con los máximos privilegios (system).
+
+![](/assets/images/EternalBlue/exploit.png)
 
 
