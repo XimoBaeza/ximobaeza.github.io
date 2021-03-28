@@ -118,7 +118,7 @@ Pruebo de inyección que había encontrado antes y funciona, en la respuesta del
 
 Me pongo a la escucha en el puerto 443 y ejecuto una reverse shell para obtener el acceso inicial.
 
-![](/assets/images/Luanne-Hackthebox/nc.png)
+![](/assets/images/Luanne-Hackthebox/shell.png)
 
 
 
