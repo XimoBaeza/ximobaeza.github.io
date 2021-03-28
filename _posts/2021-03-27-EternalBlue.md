@@ -15,7 +15,7 @@ tags:
   - Pentesting
 ---
 
-![](/assets/images/EternalBlue/EternalBlue.png)
+![](/assets/images/EternalBlue/EternalRocks.png)
 
 En este artículo veremos como atacar un Windows 7 Profesional de 64 bits y conseguir acceso al sistema con los máximos privilegios utilizando la vulnerabilidad eternalblue pero sin usar metasploit, de forma manual.
 
