@@ -5,7 +5,7 @@ excerpt: "En este artículo veremos como atacar un Windows 7 Profesional de 64 b
 date: 2021-03-27
 classes: wide
 header:
-  teaser: /assets/images/EternalBlue/EternalBlue.png
+  teaser: /assets/images/EternalBlue/EternalRocks.png
   teaser_home_page: true
 categories:
   - Windows
