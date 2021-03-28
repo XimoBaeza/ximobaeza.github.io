@@ -48,6 +48,12 @@ Busco en internet por *medusa supervisor process manager default credentials* y 
 
 ![](/assets/images/Luanne-Hackthebox/default.png)
 
+En el puerto 9001 también nos pide credenciales diréctamente. Probamos con esas credenciales en el puerto 9001 y accedemos.
+
+![](/assets/images/Luanne-Hackthebox/puerto9001.png)
+
+
+
 
 
 
