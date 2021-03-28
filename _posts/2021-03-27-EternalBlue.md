@@ -38,7 +38,7 @@ git clone https://github.com/3ndG4me/AutoBlue-MS17-010.git
 Nos metemos dentro del directorio, y ejecutamos el script que comprueba si la
 máquina es vulnerable.
 
-![](/assets/images/EternalBLue/checker.png)
+![](/assets/images/EternalBlue/checker.png)
 
 Y nos dice que no está parcheado, con lo cual es vulnerable al eternalblue.
 
@@ -60,5 +60,13 @@ Tested on:
  - Windows 2003 SP2 x86
  - Windows XP SP3 x86
  - Windows 2000 SP4 x86
+
+A continuación nos metemos en el directorio shellcode y ejecutamos
+./shell_prep.sh
+
+![](/assets/images/EternalBlue/shell_prep.png)
+
+Esto nos generará un archivo para x86 (sc_x86.bin), otro para x64 (sc_x64.bin)
+y otro que probará el exploit con las dos arquitecturas (sc_all.bin).
 
 
