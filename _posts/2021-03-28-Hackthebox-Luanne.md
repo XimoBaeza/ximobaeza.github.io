@@ -97,8 +97,7 @@ Me pongo a la escucha en el puerto 443 y ejecuto una reverse shell para obtener 
 ![](/assets/images/Luanne-Hackthebox/nc.png)
 ![](/assets/images/Luanne-Hackthebox/shell.png)
 
-En
-[https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md) encuentro la reverse shell para OpenBSD.
+En [https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md) encuentro la reverse shell para OpenBSD.
 
 ![](/assets/images/Luanne-Hackthebox/bsd.png)
 
