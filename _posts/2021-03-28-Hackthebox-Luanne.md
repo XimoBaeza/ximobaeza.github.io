@@ -102,3 +102,13 @@ En [https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%
 
 ![](/assets/images/Luanne-Hackthebox/shell.png)
 
+Veo que hay un fichero .htpasswd en /var/www y al mirar su contenido veo que
+tiene el hash de la contraseña del usuario webapi_user.
+
+![](/assets/images/Luanne-Hackthebox/hash.png)
+
+Me guardo el hash en un fichero y lo crackeo con john.
+
+![](/assets/images/Luanne-Hackthebox/john.png)
+
+
