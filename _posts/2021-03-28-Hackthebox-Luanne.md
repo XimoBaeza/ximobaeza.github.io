@@ -42,7 +42,7 @@ Vemos que en puerto 80 hay un servidor web nginx y en el puerto 9001 un Medusa h
 
 Empezamos con el puerto 80. Accedemos a la web y vemos que nos pide autenticación. Probamos con credenciales típicas pero no hay suerte, y al cancelar vemos que aparece una url que apunta al puerto 3000 127.0.0.1:3000
 
-![](/assets/images/Luanne-Hackthebox/puerto80.png)
+![](/assets/images/Luanne-Hackthebox/80.png)
 
 En el puerto 9001 también nos pide credenciales diréctamente.
 
