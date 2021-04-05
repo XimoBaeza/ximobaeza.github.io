@@ -126,4 +126,31 @@ y funcionan.
 
 ![](/assets/images/Luanne-Hackthebox/curl3001.png)
 
+Pruebo la inyección de comandos anterior en este servicio para ver si me da
+acceso como usuario r.michaels pero parece ser que la vulnerabilidad ha sido
+parcheada en el servicio en desarrollo.
+
+`curl "localhost:3001/weather/forecast?city=')+os.execute('id')+--"`
+
+![](/assets/images/Luanne-Hackthebox/inyeccion3001.png)
+
+Vemos que nos devuelve un error en vez del resultado de ejecutar el comando id.
+
+Volviendo a revisar como se ejecuta el servidor vemos que el comando es `/usr/libexec/httpd -u -X -s -i 127.0.0.1 -I 3001 -L weather /home/r.michaels/devel/webapi/weather.lua -P /var/run/httpd_devel.pid -U r.michaels -b /home/r.michaels/devel/www `
+
+Viendo la documentación oficial y que utiliza las opciones -u y -X parece ser
+que está haciendo un *directory listing* del directorio home del usuario
+r.michaels.
+
+Pruebo con `curl --user webapi_user:iamthebest localhost:3001/~r.michaels/`
+y efectívamente, además está listando la clave privada de ssh.
+
+![](/assets/images/Luanne-Hackthebox/id_rsa.png)
+
+De nuevo con curl veo el contenido de la clave.
+
+`curl --user webapi_user:iamthebest localhost:3001/~r.michaels/id_rsa`
+
+![](/assets/images/Luanne-Hackthebox/clave.png)
+
 
