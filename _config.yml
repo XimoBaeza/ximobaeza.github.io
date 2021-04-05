@@ -102,7 +102,7 @@ author:
   links:
     - label: "Hack The Box"
       icon: "fas fa-fw fa-cube"
-      url: "https://www.hackthebox.eu/home/users/profile/231996"
+      url: "https://www.hackthebox.eu/profile/231996"
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:xbaeza@gmail.com"
