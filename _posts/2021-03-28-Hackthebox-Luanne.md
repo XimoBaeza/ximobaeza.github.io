@@ -102,6 +102,8 @@ En [https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%
 
 ![](/assets/images/Luanne-Hackthebox/shell.png)
 
+## Movimiento lateral
+
 Veo que hay un fichero .htpasswd en /var/www y al mirar su contenido veo que
 tiene el hash de la contraseña del usuario webapi_user.
 
@@ -110,5 +112,18 @@ tiene el hash de la contraseña del usuario webapi_user.
 Me guardo el hash en un fichero y lo crackeo con john.
 
 ![](/assets/images/Luanne-Hackthebox/john.png)
+
+La contraseña es: iamthebest
+
+Pruebo a autenticarme con esas credenciales en el puerto 80 y accedo.
+
+![](/assets/images/Luanne-Hackthebox/puerto80.png)
+
+Pruebo las credenciales en el puerto 3001 donde está el servicio de desarrollo
+y funcionan.
+
+`curl --user webapi_user:iamthebest localhost:3001`
+
+![](/assets/images/Luanne-Hackthebox/curl3001.png)
 
 
