@@ -153,4 +153,41 @@ De nuevo con curl veo el contenido de la clave.
 
 ![](/assets/images/Luanne-Hackthebox/clave.png)
 
+Me guardo el contenido de la clave en un fichero local, le doy permisos 600
+y la utilizo para conectarme por ssh conel usuario r.michaels
+
+![](/assets/images/Luanne-Hackthebox/r.michaels.png)
+
+Ya puedo leer el user.txt en el directorio home de r.michaels.
+
+## Escalada de privilegios
+
+Enumerando el sistema encuentro un fichero de backup que está encriptado.
+
+También veo que tiene unas claves gnupg en su directorio home.
+
+![](/assets/images/Luanne-Hackthebox/enum.png)
+
+Buscando por gnupg en NetBSD encuentro que el equivalente a gpg en este sistema
+es netpgp. Como tiene unas claves en el directorio .gnupg, si son las que se
+han utilizado par encriptar el fichero se debería de poder desencriptar.
+
+Ejecuto `netpgp --decrypt --output=devel_backup-2020-09-16.tar.gz devel_backup-2020-09-
+16.tar.gz.enc` pero veo que me da error de permiso denegado, así que copio el
+fichero al directorio /tmp y lo vuelvo a ejecutar.
+
+Y esta vez si, consigo desencriptarlo, y lo descomprimo con `tar xvzf
+devel_backup-2020-09-16.tar.gz`
+
+![](/assets/images/Luanne-Hackthebox/decrypt.png)
+
+Dentro del directorio descomprimido hay otro fichero .htpasswd cno otro hash de
+usuario.
+
+`webapi_user:$1$6xc7I/LW$WuSQCS6n3yXsjPMSmwHDu.`
+
+De nuevo me lo copio a un fichero local y lo crackeo con john.
+
+![](/assets/images/Luanne-Hackthebox/hash2.png)
+
 
