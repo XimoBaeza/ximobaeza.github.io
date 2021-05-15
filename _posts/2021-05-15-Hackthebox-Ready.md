@@ -16,8 +16,6 @@ tags:
   - Linux
 ---
 
-# Máquina Ready de HackTheBox
-
 ![](/assets/images/Ready-Hackthebox/ready.png)
 
 Resolución de la máquina *Ready* de Hack The Box, una máquina Linux de dificultad media según la plataforma en la cual nos aprovechamos de una vulnerabilidad en una versión antigua de Gitlab para obtener el acceso inicial,     para posteriormente elevar privilegios a root dentro de un contenedor docker y finalmente escapar del contenedor y obtener la shell de root en la máquina.
@@ -49,4 +47,18 @@ Nmap done: 1 IP address (1 host up) scanned in 38.08 seconds
 
 Vemos que hay un Gitlab en le puerto 5080.
 
-![gitlab.png](:/c742c9e612b54ed7b94cc4d4b5b28f16)
+![](/assets/images/Ready-Hackthebox/gitlab.png)
+
+Me registro con un usuario (ximo:ximo1234) y veo que la version es 11.4.7
+
+![](/assets/images/Ready-Hackthebox/version.png)
+
+Busco por gitlab 11.4.7 exploit github y encuentro un exploit aquí:
+
+[https://github.com/dotPY-hax/gitlab_RCE](https://github.com/dotPY-hax/gitlab_RCE)
+
+Lo ejecuto y obtengo el acceso inicial.
+
+![](/assets/images/Ready-Hackthebox/foothold.png)
+
+
