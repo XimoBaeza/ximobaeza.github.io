@@ -21,7 +21,6 @@ tags:
 Resolución de la máquina *Ready* de Hack The Box, una máquina Linux de dificultad media según la plataforma en la cual nos aprovechamos de una vulnerabilidad en una versión antigua de Gitlab para obtener el acceso inicial,     para posteriormente elevar privilegios a root dentro de un contenedor docker y finalmente escapar del contenedor y obtener la shell de root en la máquina.
 
 ## Escaneo con nmap
----
 
 ```bash
 > nmap -sC -sV -p22,5080 10.10.10.220 -oN targeted                                                                                                                                                              ─╯
@@ -62,7 +61,6 @@ Lo ejecuto y obtengo el acceso inicial.
 ![](/assets/images/Ready-Hackthebox/foothold.png)
 
 ## Escalada a root dentro del contenedor docker
----
 
 Veo que hay un usuario llamado dude en el directorio home y directamente ya puedo leer el user.txt porque los permisos del fichero están configurados para que los usuarios que pertenezcan al grupo git lo puedan leer.
 
@@ -75,7 +73,6 @@ Pensando en la reutilización de contraseñas pruebo la contraseña con la cuent
 ![](/assets/images/Ready-Hackthebox/docker.png)
 
 ## Escalada a root
----
 
 Siendo root dentro del contenedor busco información sobre como escapar del contenedor docker y encuentro esta página:
 
