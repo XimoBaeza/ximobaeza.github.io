@@ -32,3 +32,23 @@ Escaneo específico sobre los puertos encontrados usando scripts básicos de enu
 
 ![](/assets/images/Spectra-Hackthebox/targeted.png)
 
+## Intrusión inicial
+
+Accedo a la web y veo que los links te redirigen a spectra.htb.
+
+![](/assets/images/Spectra-Hackthebox/web.png)
+
+Añado ```10.10.10.229 spectra.htb``` al fichero hosts para que me resuelva el nombre y accedo.
+
+En el primer link hay un wordpress
+
+![](/assets/images/Spectra-Hackthebox/wordpress.png)
+
+En el segundo hay una página en la que aparece un error
+
+![](/assets/images/Spectra-Hackthebox/testing.png)
+
+Viendo que en la URL pone la palabra testing, se intuye que puede ser un entorno de pruebas. Le quito el index.php para acceder al directorio testing y veo que tiene capacidad de Directory Listing, y se ven diréctamente los archivos.
+
+![](/assets/images/Spectra-Hackthebox/testing2.png)
+
