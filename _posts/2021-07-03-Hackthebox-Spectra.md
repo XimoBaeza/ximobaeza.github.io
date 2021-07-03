@@ -15,3 +15,7 @@ tags:
   - Pentesting
   - Linux
 ---
+
+![](/assets/images/Spectra-Hackthebox/spectra.png)
+
+Resolución de la máquina *Spectra* de Hack The Box, una máquina ChromeOS de dificultad fácil según la plataforma en la cual nos aprovechamos de un error en el entorno de pruebas para descubrir que hay un *Directory Listing* en el cual se expone un fichero de backup del wp-config.php de Wordpress para obtener el acceso inicial, para posteriormente encontrar la contraseña del usuario *katie* y acceder por ssh a la máquina, y finalmente aprovecharnos de poder ejecutar con privilegios de sudo sin proporcionar contraseña el comando initctl para modificar un servicio y obtener el acceso de root.
