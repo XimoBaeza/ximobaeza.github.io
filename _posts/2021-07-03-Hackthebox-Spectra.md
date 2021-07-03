@@ -52,3 +52,23 @@ Viendo que en la URL pone la palabra testing, se intuye que puede ser un entorno
 
 ![](/assets/images/Spectra-Hackthebox/testing2.png)
 
+Me llama la atención el fichero wp-config.save. Hago click en el fichero y nose ve nada, pero al acceder al código fuente de la página se puede ver el contenido del fichero, y unas credenciales.
+
+![](/assets/images/Spectra-Hackthebox/creds.png)
+
+Se ve claramente que la página wordpress tiene en la URL spectra.htb/main y la otra spectra.htb/testing, con lo cual entiendo que el segundo es un entorno de pruebas del primero. Así que intento acceder con el usuario admin y la contraseña devteam01 a la página principal pero me dice usuario erróneo.
+
+Viendo que el creador del único post que hay en la página es el usuario Administrator pruebo con ese usuario y la misma contraseña y accedo.
+
+Pruebo modificando la plantilla 404.php añadiendo ```<?php system($_REQUEST['cmd']); ?>``` para ejecutar comandos a partir de la variable cmd pero veo que no me deja guardar los cambios.
+
+Llegados a este punto lo intento con msfconsole, y obtengo una sesión de meterpreter.
+
+![](/assets/images/Spectra-Hackthebox/shell.png)
+
+## Escalada al usuario katie
+
+Empiezo a enumerar el sistema y veo en /opt un archivo llamado autologin.conf.orig, en el que pone que lee una contraseña de /etc/autologin. Dentro del directorio hay un fichero passwd que contiene una contraseña.
+
+![](/assets/images/Spectra-Hackthebox/passwd.png)
+
