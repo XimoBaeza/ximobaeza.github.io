@@ -72,3 +72,22 @@ Empiezo a enumerar el sistema y veo en /opt un archivo llamado autologin.conf.or
 
 ![](/assets/images/Spectra-Hackthebox/passwd.png)
 
+Utilizo la contraseña para conectarme por ssh con el usuario katie y funciona.
+
+![](/assets/images/Spectra-Hackthebox/ssh.png)
+
+## Escalada a root
+
+El usuario katie pertenece al grupo developers, se ve en la salida del comando id.
+
+Ejecuto sudo -l y veo que puedo ejecutar ```(ALL) SETENV: NOPASSWD: /sbin/initctl``` 
+
+Initctl tiene la característica de poder iniciar y detener servicios del directorio /etc/init
+
+Listando el directorio /etc/init veo que hay un fichero llamado test.conf que puede ser modificado por los usuarios que pertenecen al grupo developers.
+
+Modifico el fichero para que ejecute un chmod +s /bin/bash para otorgarle privilegio SUID al binario de bash, para que al ejecutar bash -p me asigne permisos de root.
+
+![](/assets/images/Spectra-Hackthebox/test.png)
+
+Solo me queda ejecutar ```/sbin/initctl start test``` y seguidamente bash -p para recibir los permisos de root y poder leer el root.txt.
