@@ -1,7 +1,7 @@
 ---
 layout: single
 title: Dockernymous - Anonimizando contenedores docker
-excerpt: "En este artículo veremos como utilizando el script dockernymous.sh podemos hacer que todo el tráfico hacia internet que genere un contenedor sea redirigido a la red tor. El script levanta dos contenedores, uno lo utilizaremos como *gateway* y incluye las reglas de iptables especificadas en la página oficial del proyecto de tor para anonimizar el tráfico del otro contenedor, que lo utilizaremos como *workstation*, al más puro estilo *whonix*."
+excerpt: "En este artículo veremos como utilizando el script dockernymous.sh podemos hacer que todo el tráfico hacia internet que genere un contenedor sea redirigido a la red tor. El script levanta dos contenedores, uno lo utilizaremos como *gateway* y incluye las reglas de iptables especificadas en la página oficial del proyecto de tor [https://gitlab.torproject.org/legacy/trac/-/wikis/doc/TransparentProxy](https://gitlab.torproject.org/legacy/trac/-/wikis/doc/TransparentProxy) para anonimizar el tráfico del otro contenedor, que lo utilizaremos como *workstation*, al más puro estilo *whonix*."
 date: 2021-08-04
 classes: wide
 header:
@@ -16,7 +16,7 @@ tags:
 
 ![](/assets/images/Dockernymous/tor.png)
 
-En este artículo veremos como utilizando el script dockernymous.sh podemos hacer que todo el tráfico hacia internet que genere un contenedor sea redirigido a la red tor. El script levanta dos contenedores, uno lo utilizaremos como *gateway* y incluye las reglas de iptables especificadas en la página oficial del proyecto de tor para anonimizar el tráfico del otro contenedor, que lo utilizaremos como *workstation*, al más puro estilo *whonix*.
+En este artículo veremos como utilizando el script dockernymous.sh podemos hacer que todo el tráfico hacia internet que genere un contenedor sea redirigido a la red tor. El script levanta dos contenedores, uno lo utilizaremos como *gateway* y incluye las reglas de iptables especificadas en la página oficial del proyecto de tor [https://gitlab.torproject.org/legacy/trac/-/wikis/doc/TransparentProxy](https://gitlab.torproject.org/legacy/trac/-/wikis/doc/TransparentProxy) para anonimizar el tráfico del otro contenedor, que lo utilizaremos como *workstation*, al más puro estilo *whonix*.
 
 Empezamos clonando el repositorio que se encuentra en la siguiente URL: [Dockernymous](https://github.com/bcapptain/dockernymous).
 ```bash
