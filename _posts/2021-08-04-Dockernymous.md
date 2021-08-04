@@ -23,7 +23,7 @@ Empezamos clonando el repositorio que se encuentra en la siguiente URL: [Dockern
 git clone https://github.com/bcapptain/dockernymous
 ```
 
-Creamos una red específica para el script a la que llamaremos docker_internal.
+Creamos una red específica para los contenedores a la que llamaremos docker_internal.
 
 ```bash
 docker network create --driver=bridge --subnet=192.168.0.0/24 docker_internal
@@ -35,14 +35,14 @@ Ahora descargamos una imagen de alpine, para que sea lo más ligera posible, que
 docker pull alpine
 ```
 
-Ejecutamos el contenedor y instalamos los paquetes necesarios.
+Ejecutamos el contenedor e instalamos los paquetes necesarios.
 
 ```bash
 docker run -it alpine /bin/sh
 apk add --update tor iptables iproute2
 ```
 
-En este punto yo quise instalar el paquete *nyx*, que es monitor del tráfico de tor en tiempo real, y que también sirve para más cosas. Recomiendo echar un vistazo a la página del proyecto [Nyx](https://nyx.torproject.org/).
+En este punto yo quise instalar el paquete *nyx*, que es monitor del tráfico de tor en tiempo real, y que también sirve para muchas más cosas. Recomiendo echar un vistazo a la página del proyecto [Nyx](https://nyx.torproject.org/).
 
 Para instalar nyx opté por utilizar pip, así que instalé primero pip en el contenedor y luego nyx.
 
