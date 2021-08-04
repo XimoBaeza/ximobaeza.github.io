@@ -66,6 +66,8 @@ docker run -it kalilinux/kali-rolling /bin/bash
 apt update
 apt full-upgrade
 apt install iproute2 net-tools ...
+apt clean
+exit
 ```
 
 Me encontré con que el contenedor no tenía el comando ip y fallaba el script dockernymous.sh al intentar obtener la ip. De ahí el instalar el paquete iproute2 y net-tools. Lo comento porque el autor de la herramienta lo omite en su README.
@@ -85,3 +87,4 @@ Solo nos falta ejecutar el script como root y ya se encargará de levantar los d
 
 ![](/assets/images/Dockernymous/dockernymous-test2.png)
 
+El autor de la herramienta sugiere instalar xfce4 y vnc para conectarnos al entorno gráfico del contenedor, esto ya lo dejo a vuestra elección.
