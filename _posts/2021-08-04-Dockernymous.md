@@ -54,3 +54,34 @@ exit
 
 Seguidamente ejecutaremos ```docker ps -a``` y nos quedaremos con el ID del contenedor, para luego ejecutar ```docker commit [Container ID] my_gateway``` y crear nuestra imagen cuyo nombre será my_gateway con los cambios que hemos hecho aplicados. Si queremos cambiar el nombre de la imagen podemos hacerlo, pero tendríamos que cambiarlo también en el script dockernymous.sh para que funcione.
 
+Ahora vamos con la imagen que hará las funciones de *workstation*. En mi caso utilizaré kali linux, que tiene una imagen docker bastante ligera para que podamos luego instalar sólamente los paquetes que necesitemos.
+
+```bash
+docker pull kalilinux/kali-rolling
+```
+Ahora instalaremos los paquetes que queramos. Con ```apt search kali-tools``` podemos ver las distintas categorías que tiene kali destinadas a pentesting, y con ```apt-cache show kali-tools-categoria | grep Depends``` podemos ver los paquetes que pertenecen a esa categoría para instalar solo los que necesitemos. Por ejemplo ```apt-cache show kali-tools-exploitation | grep Depends```.
+
+```bash
+docker run -it kalilinux/kali-rolling /bin/bash
+apt update
+apt full-upgrade
+apt install iproute2 net-tools ...
+```
+
+Me encontré con que el contenedor no tenía el comando ip y fallaba el script dockernymous.sh al intentar obtener la ip. De ahí el instalar el paquete iproute2 y net-tools. Lo comento porque el autor de la herramienta lo omite en su README.
+
+Cuando ya tengamos instalado todo lo que necesitemos creamos la nueva imagen.
+
+```bash
+docker commit [Container ID] my_workstation
+
+```
+
+Tuve que modificar una línea del script, en concreto la 67, en la que hace un curl para obtener nuestra ip pública, ya que el sitio web no devuelve nada actualmente y al no poder obtener la ip daba un error.
+
+Cambié ```curl --silent https://canihazip.com/s``` por ```curl --silent https://ifconfig.me/ip``` y solucioné el error.
+
+Solo nos falta ejecutar el script como root y ya se encargará de levantar los dos contenedores y enrutar el tráfico hacia tor.
+
+![](/assets/images/Dockernymous/dockernymous-test2.png)
+
