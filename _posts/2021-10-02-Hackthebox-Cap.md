@@ -180,4 +180,10 @@ En este link https://www.hackingarticles.in/linux-privilege-escalation-using-cap
 
 ![](/assets/images/Cap-Hackthebox/capability.png)
 
+Aplicado a la máquina:
 
+![](/assets/images/Cap-Hackthebox/root.png)
+
+Ya puedo leer el root.txt
+
+![](/assets/images/Cap-Hackthebox/pwned.png)
