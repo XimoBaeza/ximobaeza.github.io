@@ -15,6 +15,7 @@ tags:
   - Pentesting
 ---
 
+En esta segunda parte veremos como accder al PC02 utilizando proxychains y aprovechando el reenvío de credenciales, además de poder ver en texto claro las credenciales guardadas en el administrador de credenciales para conectarnos al controlador de dominio. Para finalizar conseguiremos persistencia en el DC1 generando un golden ticket para poder acceder sin necesidad de utilizar contraseña."
 
 ## Acceso inicial
 
