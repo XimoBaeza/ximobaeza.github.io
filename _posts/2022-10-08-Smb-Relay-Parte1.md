@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Smb Relay
+title: Smb Relay - Parte 1
 excerpt: "Para hacer este artículo me he montado un pequeño laboratorio con dos máquinas windows 11 unidas a un controlador de dominio con windows server 2022, para recrear una auditoría interna en la que empezamos con la captura de credenciales usando la herramienta responder, para luego hacer un reenvío de esas credenciales a la segunda máquina, obtener acceso a ésta, ver las credenciales guardadas en el navegador, hacer un volcado de memória del proceso lsass.exe y transferirlo a nuestro equipo, para ver las credenciales del administrador del dominio con pypykatz y conectarnos al servidor con evil-winrm. Además generaremos una persistencia con golden ticket para conectarnos al controlador de dominio cuando queramos sin necesidad de utilizar contraseña."
 date: 2022-10-08
 classes: wide
