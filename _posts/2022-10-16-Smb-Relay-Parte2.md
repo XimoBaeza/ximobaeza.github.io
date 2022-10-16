@@ -101,4 +101,4 @@ wmiexec.py -k -no-pass sietereinos.local/Administrador@dc1.sietereinos.local
 
 En la parte 3 veremos como mitigar los ataques basados en SMB Relay usando gpo para que se desplieguen en todos los equipos del dominio.
 
-[SMB Relay Parte 3](https://ximobaeza.github.io/ciberseguridad/Smb-Relay-Parte3/))
+[SMB Relay Parte 3](https://ximobaeza.github.io/ciberseguridad/Smb-Relay-Parte3/)
