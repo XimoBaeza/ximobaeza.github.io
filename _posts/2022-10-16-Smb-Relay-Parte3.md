@@ -35,7 +35,6 @@ Primero vamos a Configuración de equipo, directivas, configuración de windows,
  - Servidor de red Microsoft: firmar digitalmente las comunicaciones (siempre)
 
 ![](/assets/images/Smb-Relay/smbsign1.png)
-
 ![](/assets/images/Smb-Relay/smbsign2.png)
 
 A continuación habilitamos en Configuración de equipo, directivas, plantillas administrativas, red, cliente dns, desactivar resolución de nombres de multidifusión. Esta configuración deshabilita las peticiones LLMNR.
@@ -47,8 +46,7 @@ Seguídamente vamos a deshabilitar NetBIOS sobre TCP/IP. Esto lo haremos con un 
 Creamos un script con el siguiente contenido:
 
 ```powershell
-$regkey = "HKLM:SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces"
-Get-ChildItem $regkey |foreach { Set-ItemProperty -Path "$regkey\$($_.pschildname)" -Name NetbiosOptions -Value 2 -Verbose}
+
 ```
 
 Con esto lo que hacemos es, guardar la ruta del registro en una variable llamada regkey, para luego recorrer todas las interfaces de red disponibles y agregar una clave llamada NetbiosOptions con valor 2.
