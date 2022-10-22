@@ -72,5 +72,3 @@ Y por último, tenemos que agregar una clave de registro para las peticiones mDN
 La nueva GPO la podemos vincular al dominio entero, o solo a alguna unidad organizativa, dependiendo de como tengamos configurado el dominio, y aplicará las configuraciones en todos los equipos del dominio o de la unidad organizativa respectívamente.
 
 Con estos cambios aplicados en los equipos la herramienta responder ya no podrá capturar las autenticaciones tal como hemos visto anteriormente.
-
-En la parte 4 veremos como, a pesar de aplicar las mitigaciones, éstas se aplican a ipv4, y por ipv6 aún podemos realizar diferentes ataques.

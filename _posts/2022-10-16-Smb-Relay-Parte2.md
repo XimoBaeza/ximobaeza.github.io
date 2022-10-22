@@ -15,7 +15,7 @@ tags:
   - Pentesting
 ---
 
-En esta segunda parte veremos como accder al PC02 utilizando proxychains y aprovechando el reenvío de credenciales, además de poder ver en texto claro las credenciales guardadas en el administrador de credenciales para conectarnos al controlador de dominio. Para finalizar conseguiremos persistencia en el DC1 generando un golden ticket para poder acceder sin necesidad de utilizar contraseña."
+En esta segunda parte veremos como accder al PC02 utilizando proxychains y aprovechando el reenvío de credenciales, además de poder ver en texto claro las credenciales guardadas en el administrador de credenciales para conectarnos al controlador de dominio. Para finalizar conseguiremos persistencia en el DC1 generando un golden ticket para poder acceder sin necesidad de utilizar contraseña.
 
 ## Acceso inicial
 
@@ -73,7 +73,7 @@ Lo primero que necesitaremos es el hash de la contraseña del usuario krbtgt. Lo
 secretsdump.py Administrador:'!P@ssw0rd'@192.168.0.100 | grep krbtgt | grep :::
 ```
 
-Lo siguiente que necesitamos es el SID del dominio. Esto lo sacamos con lokkupsid.
+Lo siguiente que necesitamos es el SID del dominio. Esto lo sacamos con lookupsid.
 
 ```bash
 lookupsid.py sietereinos.local/Administrador:'!P@ssw0rd'@192.168.0.100
