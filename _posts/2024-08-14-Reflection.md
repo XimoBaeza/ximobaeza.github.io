@@ -82,9 +82,9 @@ Destacar que el DC tiene abierto el SQLServer y el equipo MS01 también.
 
 Configuramos el fichero hosts de la siguiente forma para la resolución de nombres:
 
-10.10.149.149 dc01.reflection.vl
-10.10.149.150 ms01.reflection.vl
-10.10.149.151 ws01.reflection.vl
+10.10.149.149 dc01.reflection.vl  
+10.10.149.150 ms01.reflection.vl  
+10.10.149.151 ws01.reflection.vl  
 
 
 Vamos a enumerar los equipos con Netexec.
@@ -193,7 +193,7 @@ SQL (web_staging  guest@master)>
 ```
 
 
-Listamos las bases de datos, luego elejimos la bd staging y listamos los usuarios.
+Listamos las bases de datos, luego elejimos la bd staging, listamos las tablas y listamos los usuarios.
 
 
 ```bash
