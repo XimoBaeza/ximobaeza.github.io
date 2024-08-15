@@ -399,7 +399,7 @@ Creamos un listener en Havoc del tipo https en el puerto 443.
 ![](/assets/images/Reflection/reflection-listener.png)
 
 
-Y luego creamos un agente que se conecte a el listener, en este caso en formato exe.
+Y luego creamos un agente que se conecte al listener, en este caso en formato exe.
 
 
 ![](/assets/images/Reflection/reflection-agent.png)
@@ -442,7 +442,7 @@ Ya podemos leer la primera flag ejecutando `powershell cat C:\Users\Administrato
 ![](/assets/images/Reflection/reflection-flag1.png)
 
 
-Seguidamente vamos a buscar credenciales en el equipo que nos puedan servir para movimientos laterales, y para ello utilizaremos SharpDPAPI desde el propio Havoc con la opción otnet inline-execution` que lo ejecutará en memoria.
+Seguidamente vamos a buscar credenciales en el equipo que nos puedan servir para movimientos laterales, y para ello utilizaremos SharpDPAPI desde el propio Havoc con la opción dotnet inline-execution` que lo ejecutará en memoria.
 
 ```bash
 dotnet inline-execute /workspace/Chains/Reflection/SharpDPAPI.exe machinetriage
